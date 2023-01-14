@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OpinionRepository extends JpaRepository<Opinion, Long> {
+public interface OpinionRepository extends JpaRepository<Opinion, Integer> {
     List<Opinion>findOpinionByPlanofstudiesid(Plansofstudy plansofstudy);
 }

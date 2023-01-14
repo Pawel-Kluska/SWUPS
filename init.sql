@@ -82,7 +82,7 @@ CREATE TABLE Degrees
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE "Users"
+CREATE TABLE AppUsers
 (
     ID          SERIAL  NOT NULL,
     AuthorityID integer NOT NULL,
@@ -132,7 +132,7 @@ CREATE TABLE Opinions
 (
     ID                 SERIAL       NOT NULL,
     PlanOfStudiesID    integer      NOT NULL,
-    UserID             integer      NOT NULL,
+    AppUserID             integer      NOT NULL,
     IsPositive         bool         NOT NULL,
     DateOfOpinion      timestamp    NOT NULL,
     Content            varchar(255) NOT NULL,
@@ -195,14 +195,14 @@ ALTER TABLE BlockOfCourses_Courses
 ALTER TABLE BlockOfCourses_Courses
     ADD FOREIGN KEY (CourseID) REFERENCES Courses (ID);
 ALTER TABLE Opinions
-    ADD FOREIGN KEY (UserID) REFERENCES "Users" (ID);
+    ADD FOREIGN KEY (AppUserID) REFERENCES AppUsers (ID);
 ALTER TABLE BlocksOfCourses
     ADD FOREIGN KEY (SemesterID) REFERENCES Semesters (ID);
 ALTER TABLE Opinions
     ADD FOREIGN KEY (PlanOfStudiesID) REFERENCES PlansOfStudies (ID);
 ALTER TABLE Semesters
     ADD FOREIGN KEY (PlanOfStudiesID) REFERENCES PlansOfStudies (ID);
-ALTER TABLE "Users"
+ALTER TABLE AppUsers
     ADD FOREIGN KEY (AuthorityID) REFERENCES Authorities (ID);
 ALTER TABLE FieldsOfStudy
     ADD FOREIGN KEY (FacultyID) REFERENCES Faculties (ID);
@@ -283,8 +283,8 @@ INSERT INTO public.blocksofcourses (id, blockcharacterid, semesterid, code, name
 INSERT INTO public.blocksofcourses (id, blockcharacterid, semesterid, code, name) VALUES (2, 2, 2, 'WYB_ARCH_1', 'Belki');
 INSERT INTO public.authorities (id, disciplineid, facultyid, fieldofstudyid, name, code) VALUES (1, 1, 2, 1, 'Rada informatyki', 'IST1');
 INSERT INTO public.authorities (id, disciplineid, facultyid, fieldofstudyid, name, code) VALUES (2, 2, 1, 2, 'Rada Architektury', 'ARCH1');
-INSERT INTO public."Users" (id, authorityid, login, password, name, surname) VALUES (1, 2, 'TBroma', 'TBroma', 'Tomasz', 'Broma');
-INSERT INTO public."Users" (id, authorityid, login, password, name, surname) VALUES (2, 1, 'BHnatkowska', 'BHnatkowska', 'Bogumila', 'Hnatkowska');
+INSERT INTO public.appusers (id, authorityid, login, password, name, surname) VALUES (1, 2, 'TBroma', 'TBroma', 'Tomasz', 'Broma');
+INSERT INTO public.appusers (id, authorityid, login, password, name, surname) VALUES (2, 1, 'BHnatkowska', 'BHnatkowska', 'Bogumila', 'Hnatkowska');
 INSERT INTO public.courseforms (id, name) VALUES (1, 'tradycyjna');
 INSERT INTO public.courseforms (id, name) VALUES (2, 'zdalna');
 INSERT INTO public.courses (id, wayofcreditingid, coursetypeid, coursekindid, coursecharacterid, courseformid, code, name, weeklysumofhours, sumofzzuhours, sumofcnpshours, sumofectspoints, sumofectspointsfrombuclasses, sumofectspointsfromdnclasses, discriminator) VALUES (1, 1, 1, 1, 1, 1, 'INZ004360W', 'Projektowanie oprogramowania', 2, 30, 90, 4, 1.8, 3, 'Course');
@@ -292,8 +292,8 @@ INSERT INTO public.courses (id, wayofcreditingid, coursetypeid, coursekindid, co
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid) VALUES (1, 2);
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid) VALUES (1, 1);
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid) VALUES (2, 1);
-INSERT INTO public.opinions (id, planofstudiesid, userid, ispositive, dateofopinion, content, dateofmodification) VALUES (1, 1, 1, true, '2023-01-14 19:16:34.000000', 'Swietny plan', '2023-01-14 19:18:03.000000');
-INSERT INTO public.opinions (id, planofstudiesid, userid, ispositive, dateofopinion, content, dateofmodification) VALUES (2, 2, 2, false, '2023-01-02 19:18:35.000000', 'Zly plan', '2023-01-18 19:18:52.000000');
+INSERT INTO public.opinions (id, planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification) VALUES (1, 1, 1, true, '2023-01-14 19:16:34.000000', 'Swietny plan', '2023-01-14 19:18:03.000000');
+INSERT INTO public.opinions (id, planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification) VALUES (2, 2, 2, false, '2023-01-02 19:18:35.000000', 'Zly plan', '2023-01-18 19:18:52.000000');
 
 
 COMMIT ;

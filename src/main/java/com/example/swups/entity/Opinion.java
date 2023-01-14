@@ -22,9 +22,9 @@ public class Opinion {
     @ToString.Exclude
     private Plansofstudy planofstudiesid;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "userid", nullable = false)
-    private User userid;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "appuserid", nullable = false)
+    private Appuser userid;
 
     @Column(name = "ispositive", nullable = false)
     private Boolean ispositive = false;

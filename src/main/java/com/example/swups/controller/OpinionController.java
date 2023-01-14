@@ -23,7 +23,7 @@ public class OpinionController {
     private final PlansOfStudiesService plansOfStudiesService;
     @GetMapping
     public String getAllOpinions(Model model , @PathVariable String id){
-        Plansofstudy plansofstudy = plansOfStudiesService.getPlanOfStudiesById(Long.parseLong(id));
+        Plansofstudy plansofstudy = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id));
         List<Opinion> opinions = opinionsService.getOpinionsByplanofstudiesid(plansofstudy);
         System.out.println("-------------"+opinions.size());
         model.addAttribute("opinions",opinions);
