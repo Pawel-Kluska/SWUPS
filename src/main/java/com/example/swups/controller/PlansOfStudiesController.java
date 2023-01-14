@@ -1,5 +1,6 @@
 package com.example.swups.controller;
 
+import com.example.swups.entity.Faculty;
 import com.example.swups.service.PlansOfStudiesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

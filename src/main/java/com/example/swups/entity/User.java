@@ -1,10 +1,17 @@
 package com.example.swups.entity;
 
-import com.example.swups.entity.Authority;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "\"Users\"")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class User {
     @Id
     @Column(name = "id", nullable = false)
@@ -12,6 +19,7 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "authorityid", nullable = false)
+    @ToString.Exclude
     private Authority authorityid;
 
     @Column(name = "login")
@@ -25,53 +33,16 @@ public class User {
 
     @Column(name = "surname")
     private String surname;
-
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public Authority getAuthorityid() {
-        return authorityid;
-    }
-
-    public void setAuthorityid(Authority authorityid) {
-        this.authorityid = authorityid;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
 }

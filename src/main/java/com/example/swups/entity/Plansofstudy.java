@@ -1,11 +1,18 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "plansofstudies")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Plansofstudy {
     @Id
     @Column(name = "id", nullable = false)
@@ -13,26 +20,32 @@ public class Plansofstudy {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "profileid", nullable = false)
+    @ToString.Exclude
     private Profile profileid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "formofstudiesid", nullable = false)
+    @ToString.Exclude
     private Formsofstudy formofstudiesid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planstatusid", nullable = false)
+    @ToString.Exclude
     private Planstatus planstatusid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "educationlevelid", nullable = false)
+    @ToString.Exclude
     private Educationlevel educationlevelid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "degreeid", nullable = false)
+    @ToString.Exclude
     private Degree degreeid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fieldofstudyid", nullable = false)
+    @ToString.Exclude
     private Fieldsofstudy fieldofstudyid;
 
     @Column(name = "identifier")
@@ -50,100 +63,16 @@ public class Plansofstudy {
     @Column(name = "educationcycle")
     private String educationcycle;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Plansofstudy that = (Plansofstudy) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public Profile getProfileid() {
-        return profileid;
-    }
-
-    public void setProfileid(Profile profileid) {
-        this.profileid = profileid;
-    }
-
-    public Formsofstudy getFormofstudiesid() {
-        return formofstudiesid;
-    }
-
-    public void setFormofstudiesid(Formsofstudy formofstudiesid) {
-        this.formofstudiesid = formofstudiesid;
-    }
-
-    public Planstatus getPlanstatusid() {
-        return planstatusid;
-    }
-
-    public void setPlanstatusid(Planstatus planstatusid) {
-        this.planstatusid = planstatusid;
-    }
-
-    public Educationlevel getEducationlevelid() {
-        return educationlevelid;
-    }
-
-    public void setEducationlevelid(Educationlevel educationlevelid) {
-        this.educationlevelid = educationlevelid;
-    }
-
-    public Degree getDegreeid() {
-        return degreeid;
-    }
-
-    public void setDegreeid(Degree degreeid) {
-        this.degreeid = degreeid;
-    }
-
-    public Fieldsofstudy getFieldofstudyid() {
-        return fieldofstudyid;
-    }
-
-    public void setFieldofstudyid(Fieldsofstudy fieldofstudyid) {
-        this.fieldofstudyid = fieldofstudyid;
-    }
-
-    public String getIdentifier() {
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
-    }
-
-    public Instant getDateofcreation() {
-        return dateofcreation;
-    }
-
-    public void setDateofcreation(Instant dateofcreation) {
-        this.dateofcreation = dateofcreation;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getLanguageofstudy() {
-        return languageofstudy;
-    }
-
-    public void setLanguageofstudy(String languageofstudy) {
-        this.languageofstudy = languageofstudy;
-    }
-
-    public String getEducationcycle() {
-        return educationcycle;
-    }
-
-    public void setEducationcycle(String educationcycle) {
-        this.educationcycle = educationcycle;
-    }
-
 }

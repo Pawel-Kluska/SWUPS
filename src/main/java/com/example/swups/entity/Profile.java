@@ -4,9 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "profiles")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Profile {
     @Id
     @Column(name = "id", nullable = false)
@@ -15,20 +23,16 @@ public class Profile {
     @Column(name = "name")
     private String name;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Profile profile = (Profile) o;
+        return id != null && Objects.equals(id, profile.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

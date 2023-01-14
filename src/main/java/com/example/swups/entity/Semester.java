@@ -1,9 +1,17 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "semesters")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Semester {
     @Id
     @Column(name = "id", nullable = false)
@@ -11,6 +19,7 @@ public class Semester {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
+    @ToString.Exclude
     private Plansofstudy planofstudiesid;
 
     @Column(name = "code")
@@ -22,44 +31,16 @@ public class Semester {
     @Column(name = "ectspointsdeficite", nullable = false)
     private Integer ectspointsdeficite;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Semester semester = (Semester) o;
+        return id != null && Objects.equals(id, semester.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public Plansofstudy getPlanofstudiesid() {
-        return planofstudiesid;
-    }
-
-    public void setPlanofstudiesid(Plansofstudy planofstudiesid) {
-        this.planofstudiesid = planofstudiesid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public Integer getEctspointsdeficite() {
-        return ectspointsdeficite;
-    }
-
-    public void setEctspointsdeficite(Integer ectspointsdeficite) {
-        this.ectspointsdeficite = ectspointsdeficite;
-    }
-
 }

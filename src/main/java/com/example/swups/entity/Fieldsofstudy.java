@@ -1,9 +1,17 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "fieldsofstudy")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Fieldsofstudy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,10 +20,12 @@ public class Fieldsofstudy {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "disciplineid", nullable = false)
+    @ToString.Exclude
     private Discipline disciplineid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "facultyid", nullable = false)
+    @ToString.Exclude
     private Faculty facultyid;
 
     @Column(name = "name")
@@ -24,44 +34,16 @@ public class Fieldsofstudy {
     @Column(name = "shortname")
     private String shortname;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Fieldsofstudy that = (Fieldsofstudy) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public Discipline getDisciplineid() {
-        return disciplineid;
-    }
-
-    public void setDisciplineid(Discipline disciplineid) {
-        this.disciplineid = disciplineid;
-    }
-
-    public Faculty getFacultyid() {
-        return facultyid;
-    }
-
-    public void setFacultyid(Faculty facultyid) {
-        this.facultyid = facultyid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortname() {
-        return shortname;
-    }
-
-    public void setShortname(String shortname) {
-        this.shortname = shortname;
-    }
-
 }

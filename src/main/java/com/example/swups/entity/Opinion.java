@@ -1,11 +1,18 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "opinions")
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 public class Opinion {
     @Id
     @Column(name = "id", nullable = false)
@@ -13,10 +20,12 @@ public class Opinion {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
+    @ToString.Exclude
     private Plansofstudy planofstudiesid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
+    @ToString.Exclude
     private User userid;
 
     @Column(name = "ispositive", nullable = false)
@@ -31,60 +40,16 @@ public class Opinion {
     @Column(name = "dateofmodification", nullable = false)
     private Instant dateofmodification;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Opinion opinion = (Opinion) o;
+        return id != null && Objects.equals(id, opinion.id);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
-
-    public Plansofstudy getPlanofstudiesid() {
-        return planofstudiesid;
-    }
-
-    public void setPlanofstudiesid(Plansofstudy planofstudiesid) {
-        this.planofstudiesid = planofstudiesid;
-    }
-
-    public User getUserid() {
-        return userid;
-    }
-
-    public void setUserid(User userid) {
-        this.userid = userid;
-    }
-
-    public Boolean getIspositive() {
-        return ispositive;
-    }
-
-    public void setIspositive(Boolean ispositive) {
-        this.ispositive = ispositive;
-    }
-
-    public Instant getDateofopinion() {
-        return dateofopinion;
-    }
-
-    public void setDateofopinion(Instant dateofopinion) {
-        this.dateofopinion = dateofopinion;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Instant getDateofmodification() {
-        return dateofmodification;
-    }
-
-    public void setDateofmodification(Instant dateofmodification) {
-        this.dateofmodification = dateofmodification;
-    }
-
 }

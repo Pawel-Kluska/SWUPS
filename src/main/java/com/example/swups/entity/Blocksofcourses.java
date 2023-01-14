@@ -5,46 +5,51 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
+import java.util.Set;
 
+@Entity
+@Table(name = "blocksofcourses")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
-@Table(name = "authorities")
-public class Authority {
+public class Blocksofcourses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "disciplineid", nullable = false)
+    @JoinColumn(name = "blockcharacterid", nullable = false)
     @ToString.Exclude
-    private Discipline disciplineid;
+    private Blockcharacter blockcharacterid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "facultyid", nullable = false)
+    @JoinColumn(name = "semesterid", nullable = false)
     @ToString.Exclude
-    private Faculty facultyid;
+    private Semester semesterid;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "fieldofstudyid", nullable = false)
-    @ToString.Exclude
-    private Fieldsofstudy fieldofstudyid;
+    @Column(name = "code")
+    private String code;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code")
-    private String code;
+    @ManyToMany
+    @JoinTable(
+            name = "BlockOfCourses_Courses",
+            joinColumns = @JoinColumn(name = "BlockOfCoursesID"),
+            inverseJoinColumns = @JoinColumn(name = "CourseID"))
+    @ToString.Exclude
+    Set<Course> courses;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Authority authority = (Authority) o;
-        return id != null && Objects.equals(id, authority.id);
+        Blocksofcourses that = (Blocksofcourses) o;
+        return id != null && Objects.equals(id, that.id);
     }
 
     @Override
