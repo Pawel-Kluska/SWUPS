@@ -23,6 +23,7 @@ public class PlansOfStudiesController {
     @GetMapping("/{id}/details")
     public String getPlanDetails(Model model, @PathVariable String id) {
         model.addAttribute("plan", plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id)));
+        model.addAttribute("addOpinionUrl", "/plans/" + id + "/details/opinions/add");
         return "plansOfStudies/details";
     }
 }
