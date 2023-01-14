@@ -9,19 +9,80 @@
     <title>Products list</title>
 </head>
 <body>
+<div class="container mx-auto mt-5" style="width: 1500px;">
+    <div class="content">
+        <div th:object="${plan}">
+            <div class="row border">
+                <div class="col-4">
+                    <p>Nazwa planu</p>
+                </div>
+                <div class="col-8">
+                    <p th:text="${plan.getIdentifier()}"></p>
+                </div>
 
-<div class="content">
-    <table class="display table table-bordered" style="width:800px">
-        <tbody>
-        <tr>
-            <td class="text-right"th:text= "${plan.getIdentifier()}"></td>
-            <td class="text-left"th:text= "${plan.getFieldofstudyid().getName()}"></td>
+            </div>
+            <div class="row border">
+                <div class="col-4">
+                    <p>Wydział</p>
+                </div>
+                <div class="col-8">
+                    <p th:text="${plan.getFieldofstudyid().getFacultyid().getName()}"></p>
+                </div>
 
-        </tr>
-        </tbody>
-    </table>
+            </div>
+            <div class="row border">
+                <div class="col-4">
+                    <p>Studia</p>
+                </div>
+                <div class="col-8">
+                    <p th:text="${plan.getFormofstudiesid().getName()}"></p>
+                    <p th:text="${plan.getEducationlevelid().getName()}"></p>
+                    <p th:text="${plan.getDegreeid().getName()}"></p>
+                </div>
+
+            </div>
+            <div class="row border">
+                <div class="col-4">
+                    <p>Kierunek</p>
+                </div>
+                <div class="col-8">
+                    <p th:text="${plan.getFieldofstudyid().getName()}"></p>
+                </div>
+
+            </div>
+            <div class="row border">
+                <div class="col-4">
+                    <p>Specjalność</p>
+                </div>
+                <div class="col-8">
+                    <p th:text="${plan.getSpecialization()}"></p>
+                </div>
+
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-3">
+                    <a class="btn btn-primary"
+                       th:href="@{/plans}">Powrót</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-primary disabled"
+                    >Wyświetl plan</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-primary disabled"
+                    >Zaopiniuj plan</a>
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-primary disabled"
+                    >Wyświetl opinie</a>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
 </div>
-<a class="btn btn-primary" th:href="@{/plans/{planId}/details/opinions(planId=${plan.getId()})}" role="button">Opinie</a>
-<p th:text="${serverTime}"></p>
 </body>
 </html>

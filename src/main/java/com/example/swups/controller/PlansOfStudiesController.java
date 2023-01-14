@@ -1,17 +1,12 @@
 package com.example.swups.controller;
 
-import com.example.swups.entity.Faculty;
-import com.example.swups.entity.Plansofstudy;
 import com.example.swups.service.PlansOfStudiesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/plans")
@@ -27,7 +22,7 @@ public class PlansOfStudiesController {
 
     @GetMapping("/{id}/details")
     public String getPlanDetails(Model model, @PathVariable String id) {
-        model.addAttribute("plan", plansOfStudiesService.getPlanOfStudiesById(Long.parseLong(id)));
+        model.addAttribute("plan", plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id)));
         return "plansOfStudies/details";
     }
 }
