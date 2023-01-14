@@ -44,11 +44,6 @@ public class Course {
     @ToString.Exclude
     private Courseform courseformid;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "courseid")
-    @ToString.Exclude
-    private Course courseid;
-
     @Column(name = "code")
     private String code;
 
