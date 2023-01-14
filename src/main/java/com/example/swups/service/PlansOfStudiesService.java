@@ -18,7 +18,6 @@ public class PlansOfStudiesService {
     public List<Plansofstudy> getPlansOfStudies() {
         return plansOfStudiesRepository.findAll();
     }
-
     public Plansofstudy getPlanOfStudiesById(long id) {
         Optional<Plansofstudy> planById = plansOfStudiesRepository.findById(id);
         return planById.orElseThrow(EntityNotFoundException::new);

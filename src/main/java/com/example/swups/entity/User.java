@@ -10,7 +10,6 @@ import java.util.Objects;
 @Table(name = "\"Users\"")
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 public class User {
     @Id
@@ -19,7 +18,6 @@ public class User {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "authorityid", nullable = false)
-    @ToString.Exclude
     private Authority authorityid;
 
     @Column(name = "login")
@@ -39,6 +37,11 @@ public class User {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         User user = (User) o;
         return id != null && Objects.equals(id, user.id);
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 
     @Override

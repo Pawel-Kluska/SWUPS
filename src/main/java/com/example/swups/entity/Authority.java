@@ -8,7 +8,6 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
 @Table(name = "authorities")
@@ -20,17 +19,14 @@ public class Authority {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "disciplineid", nullable = false)
-    @ToString.Exclude
     private Discipline disciplineid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "facultyid", nullable = false)
-    @ToString.Exclude
     private Faculty facultyid;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fieldofstudyid", nullable = false)
-    @ToString.Exclude
     private Fieldsofstudy fieldofstudyid;
 
     @Column(name = "name")
@@ -45,6 +41,11 @@ public class Authority {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Authority authority = (Authority) o;
         return id != null && Objects.equals(id, authority.id);
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 
     @Override

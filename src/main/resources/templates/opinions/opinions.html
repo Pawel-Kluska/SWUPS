@@ -11,17 +11,11 @@
 <body>
 
 <div class="content">
-    <table class="display table table-bordered" style="width:800px">
-        <tbody>
-        <tr>
-            <td class="text-right"th:text= "${plan.getIdentifier()}"></td>
-            <td class="text-left"th:text= "${plan.getFieldofstudyid().getName()}"></td>
+    <div th:each="opinion : ${opinions}">
+        <p th:text="${opinion.getId()}">dd</p>
+        <p th:text="${opinion.getUserid().getAuthorityid().getName()}"></p>
 
-        </tr>
-        </tbody>
-    </table>
+    </div>
 </div>
-<a class="btn btn-primary" th:href="@{/plans/{planId}/details/opinions(planId=${plan.getId()})}" role="button">Opinie</a>
-<p th:text="${serverTime}"></p>
+
 </body>
-</html>

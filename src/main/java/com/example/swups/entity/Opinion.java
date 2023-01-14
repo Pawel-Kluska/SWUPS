@@ -11,7 +11,6 @@ import java.util.Objects;
 @Table(name = "opinions")
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 public class Opinion {
     @Id
@@ -25,7 +24,6 @@ public class Opinion {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
-    @ToString.Exclude
     private User userid;
 
     @Column(name = "ispositive", nullable = false)
@@ -51,5 +49,9 @@ public class Opinion {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+    @Override
+    public String toString() {
+        return "";
     }
 }
