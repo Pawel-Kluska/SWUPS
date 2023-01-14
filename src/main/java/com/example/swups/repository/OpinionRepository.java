@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface OpinionRepository extends JpaRepository<Opinion, Integer> {
     List<Opinion>findOpinionByPlanofstudiesid(Plansofstudy plansofstudy);
+    Opinion getOpinionById(Integer id);
 }

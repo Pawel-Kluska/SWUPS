@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="text/html; UTF-8">
+    <!--  <link rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Products list</title>
+</head>
+<body>
+<div class="container bg-light" th:Object="${opinion}">
+    <p th:text="${opinion.getId()}"></p>
+    <div class="row border">
+        <div class="col">
+            <p>Organ opiniujacy</p>
+        </div>
+        <div class="col">
+            <p th:text="${opinion.getUserid().getAuthorityid().getName()}">/p>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col">
+            <p>Data modyfikacji</p>
+        </div>
+        <div class="col">
+            <p th:text="${opinion.getDateofmodification()}"></p>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col">
+            <p>Wystawiona przez</p>
+        </div>
+        <div class="col">
+            <p th:text="${opinion.getUserid().getName()}"></p>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col">
+            <p>Status</p>
+        </div>
+        <div class="col">
+            <p th:if="${opinion.getIspositive() == true}">Pozytywna</p>
+            <p th:if="${opinion.getIspositive() == false}">Negatywna</p>
+        </div>
+    </div>
+</div>
+<div class="container bg-light mt-2" th:Object="${opinion}">
+    <div class="row border">
+        <p th:text="${opinion.getContent()}"></p>
+    </div>
+</div>
+</body>
+</html>

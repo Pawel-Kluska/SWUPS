@@ -2,10 +2,10 @@ package com.example.swups.service;
 
 import com.example.swups.entity.Opinion;
 import com.example.swups.entity.Plansofstudy;
-import com.example.swups.exceptions.EmptyOpinionContentException;
 import com.example.swups.repository.OpinionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +22,8 @@ public class OpinionsService {
     public List<Opinion> getOpinionsByplanofstudiesid(Plansofstudy plansofstudy) {
        return opinionRepository.findOpinionByPlanofstudiesid(plansofstudy);
     }
-
-    public void saveOpinion(Opinion opinion) throws EmptyOpinionContentException {
-        if (opinion.getContent().equals("")) {
-            throw new EmptyOpinionContentException("Opinion content can't be empty");
-        }
-        opinionRepository.save(opinion);
+    public Opinion getOpinionById(Integer id){
+        return opinionRepository.getReferenceById(id);
     }
 
 }

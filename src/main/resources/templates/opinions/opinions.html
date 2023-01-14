@@ -10,10 +10,34 @@
 </head>
 <body>
 
-<div class="content">
-    <div th:each="opinion : ${opinions}">
-        <p th:text="${opinion.getId()}">dd</p>
-        <p th:text="${opinion.getUserid().getAuthorityid().getName()}"></p>
+<div class="container bg-light">
+        <div th:each="opinion : ${opinions}" class="row border">
+<!--            <div class="col-1">-->
+<!--                <p th:text="${opinion.getId()}"></p>-->
+<!--            </div>-->
+            <div class="col-2">
+                <p th:text="${opinion.getUserid().getAuthorityid().getName()}"></p>
+            </div>
+            <div class="col-4">
+                <p th:text="'Data dodania: '+${opinion.getDateofopinion()}"></p>
+            </div>
+            <div class="col-6">
+                <p th:text=" 'Data ostatniej modyfikacji: ' +${opinion.getDateofmodification()}"></p>
+            </div>
+            <div class="col-2">
+                <div th:if="${opinion.getIspositive() == false}" class="text-danger">
+                    <p>Negatywna</p>
+                </div>
+                <div th:if="${opinion.getIspositive() == true}" class=" text-success">
+                    <p>Pozytywna</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <p th:text="${'Wystawiona przez: ' +opinion.getUserid().getName()+' '+opinion.getUserid().getSurname() }"></p>
+            </div>
+            <div class="col-6">
+                <a class="btn btn-primary" th:href="@{/plans/{planId}/details/opinions/{opinionId}(planId=${opinion.getPlanofstudiesid().getId()}, opinionId=${opinion.getId()})}">Przeczytaj</a>
+            </div>
 
     </div>
 </div>
