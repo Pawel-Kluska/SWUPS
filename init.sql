@@ -1,98 +1,97 @@
-CREATE TABLE PlanOfStudies
+CREATE TABLE PlansOfStudies
 (
     ID               SERIAL NOT NULL,
-    ProfileID        int4   NOT NULL,
-    FormOfStudiesID  int4   NOT NULL,
-    PlanStatusID     int4   NOT NULL,
-    EducationLevelID int4   NOT NULL,
-    DegreeID         int4   NOT NULL,
-    FieldOfStudyID   int4   NOT NULL,
+    ProfileID        integer   NOT NULL,
+    FormOfStudiesID  integer   NOT NULL,
+    PlanStatusID     integer   NOT NULL,
+    EducationLevelID integer   NOT NULL,
+    DegreeID         integer   NOT NULL,
+    FieldOfStudyID   integer   NOT NULL,
     Identifier       varchar(255),
-    DateOfCreation   date,
+    DateOfCreation   timestamp NOT NULL,
     Specialization   varchar(255),
-    LanguageOfStudy  varchar(255),
+    LanguageOfStudy  varchar(255) NOT NULL,
     EducationCycle   varchar(255),
     PRIMARY KEY (ID)
 );
-CREATE TABLE Profile
+CREATE TABLE Profiles
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
-CREATE TABLE Semester
+CREATE TABLE Semesters
 (
     ID                 SERIAL NOT NULL,
-    PlanOfStudiesID    int4   NOT NULL,
+    PlanOfStudiesID    integer   NOT NULL,
     Code               varchar(255),
-    Number             int4   NOT NULL,
-    ECTSPointsDeficite int4   NOT NULL,
+    Number             integer   NOT NULL,
+    ECTSPointsDeficite integer   NOT NULL,
     PRIMARY KEY (ID)
 );
-CREATE TABLE CourseType
+CREATE TABLE CourseTypes
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
-CREATE TABLE Course
+CREATE TABLE Courses
 (
     ID                           SERIAL       NOT NULL,
-    WayOfCreditingID             int4         NOT NULL,
-    CourseTypeID                 int4         NOT NULL,
-    CourseKindID                 int4         NOT NULL,
-    CourseCharacterID            int4         NOT NULL,
-    CourseFormID                 int4         NOT NULL,
-    CourseID                     int4,
+    WayOfCreditingID             integer         NOT NULL,
+    CourseTypeID                 integer         NOT NULL,
+    CourseKindID                 integer         NOT NULL,
+    CourseCharacterID            integer         NOT NULL,
+    CourseFormID                 integer         NOT NULL,
+    CourseID                     integer,
     Code                         varchar(255),
-    Type                         int4,
+    CourseTypeID                 integer,
     Name                         varchar(255),
-    Form                         int4,
-    Kind                         int4,
-    Character                    int4,
-    WayOfCrediting               int4,
-    WeeklySumOfHours             int4         NOT NULL,
-    SumOfZZUHours                int4         NOT NULL,
-    SumOfCNPSHours               int4         NOT NULL,
-    SumOFECTSPoints              int4         NOT NULL,
+    CourseFormID                 integer,
+    CourseKindID                 integer,
+    CourseCharacterID            integer,
+    WayOfCreditingID             integer,
+    WeeklySumOfHours             integer         NOT NULL,
+    SumOfZZUHours                integer         NOT NULL,
+    SumOfCNPSHours               integer         NOT NULL,
+    SumOFECTSPoints              integer         NOT NULL,
     SumOFECTSPointsFromBUClasses float4       NOT NULL,
     SumOFECTSPointsFromDNClasses float4       NOT NULL,
     Discriminator                varchar(255) NOT NULL,
     PRIMARY KEY (ID)
 );
-CREATE TABLE CourseKind
+CREATE TABLE CourseKinds
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
-CREATE TABLE BlockOfCourses
+CREATE TABLE BlocksOfCourses
 (
     ID               SERIAL NOT NULL,
-    BlockCharacterID int4   NOT NULL,
-    SemesterID       int4   NOT NULL,
+    BlockCharacterID integer   NOT NULL,
+    SemesterID       integer   NOT NULL,
     Code             varchar(255),
     Name             varchar(255),
-    Character        int4,
     PRIMARY KEY (ID)
 );
-CREATE TABLE WayOfCrediting
+CREATE TABLE WaysOfCrediting
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
-CREATE TABLE Degree
+CREATE TABLE Degrees
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE "User"
+CREATE TABLE "Users"
 (
     ID          SERIAL NOT NULL,
-    AuthorityID int4   NOT NULL,
+    AuthorityID integer   NOT NULL,
     Login       varchar(255),
     Password    varchar(255),
     Name        varchar(255),
@@ -100,54 +99,54 @@ CREATE TABLE "User"
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE CourseForm
+CREATE TABLE CourseForms
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE BlockCharacter
+CREATE TABLE BlockCharacters
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE EducationLevel
+CREATE TABLE EducationLevels
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE FormOfStudies
+CREATE TABLE FormsOfStudies
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE CourseCharacter
+CREATE TABLE CourseCharacters
 (
     ID   SERIAL NOT NULL,
-    Name int4,
+    Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE Opinion
+CREATE TABLE Opinions
 (
     ID                 SERIAL NOT NULL,
-    PlanOfStudiesID    int4   NOT NULL,
-    UserID             int4   NOT NULL,
+    PlanOfStudiesID    integer   NOT NULL,
+    UserID             integer   NOT NULL,
     IsPositive         bool   NOT NULL,
-    DateOfOpinion      date,
-    Content            varchar(255),
-    DateOfModification date,
+    DateOfOpinion      timestamp NOT NULL,
+    Content            varchar(255) NOT NULL,
+    DateOfModification timestamp NOT NULL,
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE Faculty
+CREATE TABLE Faculties
 (
     ID        SERIAL NOT NULL,
     Name      varchar(255),
@@ -155,95 +154,95 @@ CREATE TABLE Faculty
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE FieldOfStudy
+CREATE TABLE FielsdOfStudy
 (
     ID           SERIAL NOT NULL,
-    DisciplineID int4   NOT NULL,
-    FacultyID    int4   NOT NULL,
+    DisciplineID integer   NOT NULL,
+    FacultyID    integer   NOT NULL,
     Name         varchar(255),
     ShortName    varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE Discipline
+CREATE TABLE Disciplines
 (
     ID   SERIAL NOT NULL,
     Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE Authority
+CREATE TABLE Authorities
 (
     ID             SERIAL NOT NULL,
-    DisciplineID   int4   NOT NULL,
-    FacultyID      int4   NOT NULL,
-    FieldOfStudyID int4   NOT NULL,
+    DisciplineID   integer   NOT NULL,
+    FacultyID      integer   NOT NULL,
+    FieldOfStudyID integer   NOT NULL,
     Name           varchar(255),
     Code           varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE PlanStatus
+CREATE TABLE PlanStatuses
 (
     ID   SERIAL NOT NULL,
     Name varchar(255),
     PRIMARY KEY (ID)
 );
 
-CREATE TABLE BlockOfCourses_Course
+CREATE TABLE BlockOfCourses_Courses
 (
-    BlockOfCoursesID int4 NOT NULL,
-    CourseID         int4 NOT NULL,
+    BlockOfCoursesID integer NOT NULL,
+    CourseID         integer NOT NULL,
     PRIMARY KEY (BlockOfCoursesID, CourseID)
 );
 
-ALTER TABLE BlockOfCourses_Course
-    ADD CONSTRAINT zawiera FOREIGN KEY (BlockOfCoursesID) REFERENCES BlockOfCourses (ID);
-ALTER TABLE BlockOfCourses_Course
-    ADD CONSTRAINT zawiera2 FOREIGN KEY (CourseID) REFERENCES Course (ID);
-ALTER TABLE Opinion
-    ADD CONSTRAINT wydaje FOREIGN KEY (UserID) REFERENCES "User" (ID);
-ALTER TABLE BlockOfCourses
-    ADD CONSTRAINT " posiada" FOREIGN KEY (SemesterID) REFERENCES Semester (ID);
-ALTER TABLE Opinion
-    ADD CONSTRAINT dotyczy FOREIGN KEY (PlanOfStudiesID) REFERENCES PlanOfStudies (ID);
-ALTER TABLE Semester
-    ADD CONSTRAINT "podzielony na" FOREIGN KEY (PlanOfStudiesID) REFERENCES PlanOfStudies (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT "składa się z" FOREIGN KEY (CourseID) REFERENCES Course (ID);
-ALTER TABLE "User"
-    ADD CONSTRAINT reprezentuje FOREIGN KEY (AuthorityID) REFERENCES Authority (ID);
+ALTER TABLE BlockOfCourses_Courses
+    ADD CONSTRAINT FOREIGN KEY (BlockOfCoursesID) REFERENCES BlocksOfCourses (ID);
+ALTER TABLE BlockOfCourses_Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseID) REFERENCES Courses (ID);
+ALTER TABLE Opinions
+    ADD CONSTRAINT FOREIGN KEY (UserID) REFERENCES "Users" (ID);
+ALTER TABLE BlocksOfCourses
+    ADD CONSTRAINT FOREIGN KEY (SemesterID) REFERENCES Semesters (ID);
+ALTER TABLE Opinions
+    ADD CONSTRAINT FOREIGN KEY (PlanOfStudiesID) REFERENCES PlansOfStudies (ID);
+ALTER TABLE Semesters
+    ADD CONSTRAINT FOREIGN KEY (PlanOfStudiesID) REFERENCES PlansOfStudies (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseID) REFERENCES Courses (ID);
+ALTER TABLE "Users"
+    ADD CONSTRAINT FOREIGN KEY (AuthorityID) REFERENCES Authorities (ID);
+ALTER TABLE FieldsOfStudy
+    ADD CONSTRAINT FOREIGN KEY (FacultyID) REFERENCES Faculties (ID);
+ALTER TABLE Authorities
+    ADD CONSTRAINT FOREIGN KEY (FieldOfStudyID) REFERENCES FieldsOfStudy (ID);
+ALTER TABLE Authorities
+    ADD CONSTRAINT FOREIGN KEY (FacultyID) REFERENCES Faculties (ID);
+ALTER TABLE Authorities
+    ADD CONSTRAINT FOREIGN KEY (DisciplineID) REFERENCES Disciplines (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (FieldOfStudyID) REFERENCES FieldsOfStudy (ID);
 ALTER TABLE FieldOfStudy
-    ADD CONSTRAINT posiada FOREIGN KEY (FacultyID) REFERENCES Faculty (ID);
-ALTER TABLE Authority
-    ADD CONSTRAINT dotyczy2 FOREIGN KEY (FieldOfStudyID) REFERENCES FieldOfStudy (ID);
-ALTER TABLE Authority
-    ADD CONSTRAINT "działa na" FOREIGN KEY (FacultyID) REFERENCES Faculty (ID);
-ALTER TABLE Authority
-    ADD CONSTRAINT dotyczy3 FOREIGN KEY (DisciplineID) REFERENCES Discipline (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT dotyczy4 FOREIGN KEY (FieldOfStudyID) REFERENCES FieldOfStudy (ID);
-ALTER TABLE FieldOfStudy
-    ADD CONSTRAINT "przypisany do" FOREIGN KEY (DisciplineID) REFERENCES Discipline (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT uzyskany FOREIGN KEY (DegreeID) REFERENCES Degree (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT dotyczy5 FOREIGN KEY (EducationLevelID) REFERENCES EducationLevel (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT posiada2 FOREIGN KEY (PlanStatusID) REFERENCES PlanStatus (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT ma FOREIGN KEY (FormOfStudiesID) REFERENCES FormOfStudies (ID);
-ALTER TABLE PlanOfStudies
-    ADD CONSTRAINT ma2 FOREIGN KEY (ProfileID) REFERENCES Profile (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT jest FOREIGN KEY (CourseFormID) REFERENCES CourseForm (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT ma3 FOREIGN KEY (CourseCharacterID) REFERENCES CourseCharacter (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT ma4 FOREIGN KEY (CourseKindID) REFERENCES CourseKind (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT ma5 FOREIGN KEY (CourseTypeID) REFERENCES CourseType (ID);
-ALTER TABLE Course
-    ADD CONSTRAINT ma6 FOREIGN KEY (WayOfCreditingID) REFERENCES WayOfCrediting (ID);
-ALTER TABLE BlockOfCourses
-    ADD CONSTRAINT jest2 FOREIGN KEY (BlockCharacterID) REFERENCES BlockCharacter (ID);
+    ADD CONSTRAINT FOREIGN KEY (DisciplineID) REFERENCES Disciplines (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (DegreeID) REFERENCES Degrees (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (EducationLevelID) REFERENCES EducationLevels (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (PlanStatusID) REFERENCES PlanStatuses (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (FormOfStudiesID) REFERENCES FormsOfStudies (ID);
+ALTER TABLE PlansOfStudies
+    ADD CONSTRAINT FOREIGN KEY (ProfileID) REFERENCES Profiles (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseFormID) REFERENCES CourseForms (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseCharacterID) REFERENCES CourseCharacters (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseKindID) REFERENCES CourseKinds (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (CourseTypeID) REFERENCES CourseTypes (ID);
+ALTER TABLE Courses
+    ADD CONSTRAINT FOREIGN KEY (WayOfCreditingID) REFERENCES WaysOfCrediting (ID);
+ALTER TABLE BlocksOfCourses
+    ADD CONSTRAINT FOREIGN KEY (BlockCharacterID) REFERENCES BlockCharacters (ID);
