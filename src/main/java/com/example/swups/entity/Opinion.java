@@ -11,6 +11,8 @@ import java.util.Objects;
 @Table(name = "opinions")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Opinion {
     @Id
@@ -22,7 +24,7 @@ public class Opinion {
     @ToString.Exclude
     private Plansofstudy planofstudiesid;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "appuserid", nullable = false)
     private Appuser userid;
 
