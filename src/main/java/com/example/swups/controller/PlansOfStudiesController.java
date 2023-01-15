@@ -33,11 +33,10 @@ public class PlansOfStudiesController {
 
     @PostMapping("/{id}/details")
     public String acceptAPlan(@ModelAttribute Plansofstudy plan){
+        System.out.println("zatwierdzam");
         plan = plansOfStudiesService.getPlanOfStudiesById(plan.getId());
-        System.out.println("AAAAAAA");
         Planstatus planStatus = planstatusService.getPlanStatusByName("Zatwierdzony");
         plan.setPlanstatusid(planStatus);
-        System.out.println(plan.getPlanstatusid().getName());
         plansOfStudiesService.savePlan(plan);
         return "redirect:/plans/" + plan.getId() + "/details";
     }
