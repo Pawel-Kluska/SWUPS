@@ -67,7 +67,7 @@
                 </div>
 
             </div>
-
+            <p th:text="${plan.getPlanstatusid().getName()}"></p>
             <div class="row mt-5">
                 <div class="col-3">
                     <a class="btn btn-primary"
@@ -87,32 +87,41 @@
                 </div>
             </div>
 
-
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Zatwierdź plan</button>
 
+<!--<form th:object="${plan}" th:action="${url}" method="post">-->
+<!--    <p th:text="${plan.getPlanstatusid().getName()}"></p>-->
+<!--    <input type="submit" class="btn btn-success" data-dismiss="modal" id="okBtn">-->
+<!--</form>-->
 <div class="modal fade" id="myModal">
+
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Modal Title</h4>
+                <h4 class="modal-title">Czy na pewno chcesz zatwierdzic plan</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <!-- Modal body -->
-            <div class="modal-body">
-                Modal body text goes here.
-            </div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" id="okBtn">OK</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-            </div>
+
+                <div class="modal-footer">
+                    <form th:object="${plan}" th:action="${url}" method="post" id="form">
+                    <p th:text="'Obecny status to: '+${plan.getPlanstatusid().getName()}"></p>
+                    <input type="submit" onclick="form_submit()" class="btn btn-success" data-dismiss="modal" id="okBtn" value="Tak">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Nie</button>
+                    </form>
+                </div>
+            <script>
+                function form_submit() {
+                    document.getElementById("form").submit();
+                }
+            </script>
+
 
         </div>
     </div>

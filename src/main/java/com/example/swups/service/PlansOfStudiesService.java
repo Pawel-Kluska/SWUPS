@@ -22,4 +22,7 @@ public class PlansOfStudiesService {
         Optional<Plansofstudy> planById = plansOfStudiesRepository.findById(id);
         return planById.orElseThrow(EntityNotFoundException::new);
     }
+    public void savePlan(Plansofstudy plansofstudy){
+        plansOfStudiesRepository.save(plansofstudy);
+    }
 }
