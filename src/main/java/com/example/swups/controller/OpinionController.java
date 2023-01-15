@@ -41,18 +41,18 @@ public class OpinionController {
 
     }
 
-    @GetMapping("/plans/{id}/details/opinions/add")
-    public String getOpinionForm(Model model, @PathVariable String id, @RequestParam(required = false) String error) {
-        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id));
+    @GetMapping("/add")
+    public String getOpinionForm(Model model, @PathVariable String planId, @RequestParam(required = false) String error) {
+        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
         model.addAttribute("opinion", Opinion.builder().planofstudiesid(planOfStudiesById).build());
-        model.addAttribute("url", "/plans/" + id + "/details/opinions/add");
+        model.addAttribute("url", "/plans/" + planId + "/details/opinions/add");
         model.addAttribute("error", error);
         return "opinions/add";
     }
 
-    @PostMapping("/plans/{id}/details/opinions/add")
-    public String saveOpinionForm(@ModelAttribute Opinion opinion, @PathVariable String id) {
-        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id));
+    @PostMapping("/add")
+    public String saveOpinionForm(@ModelAttribute Opinion opinion, @PathVariable String planId) {
+        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
         opinion.setPlanofstudiesid(planOfStudiesById);
         opinion.setUserid(new Appuser()); //TODO: jak bedzie logowanie to sie ogarnie current user
         opinion.setDateofopinion(Instant.now());
@@ -60,8 +60,8 @@ public class OpinionController {
         try {
             opinionsService.saveOpinion(opinion);
         } catch (EmptyOpinionContentException e) {
-            return "redirect:/plans/" + id + "/details/opinions/add?error=true";
+            return "redirect:/plans/" + planId + "/details/opinions/add?error=true";
         }
-        return "redirect:/plans/" + id + "/details/opinions";
+        return "redirect:/plans/" + planId + "/details/opinions";
     }
 }

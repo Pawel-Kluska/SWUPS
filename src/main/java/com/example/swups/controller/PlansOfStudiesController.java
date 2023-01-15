@@ -24,6 +24,7 @@ public class PlansOfStudiesController {
     public String getPlanDetails(Model model, @PathVariable String id) {
         model.addAttribute("plan", plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id)));
         model.addAttribute("addOpinionUrl", "/plans/" + id + "/details/opinions/add");
+        model.addAttribute("addOpinionsUrl", "/plans/" + id + "/details/opinions");
         return "plansOfStudies/details";
     }
 }
