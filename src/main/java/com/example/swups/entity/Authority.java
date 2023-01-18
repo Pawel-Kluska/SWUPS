@@ -1,7 +1,9 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -17,23 +19,9 @@ public class Authority {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "disciplineid", nullable = false)
-    private Discipline disciplineid;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "facultyid", nullable = false)
-    private Faculty facultyid;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "fieldofstudyid", nullable = false)
-    private Fieldsofstudy fieldofstudyid;
-
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code")
-    private String code;
 
     @Override
     public boolean equals(Object o) {

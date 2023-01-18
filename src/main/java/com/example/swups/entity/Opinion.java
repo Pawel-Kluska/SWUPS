@@ -12,11 +12,13 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Opinion {
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -26,10 +28,11 @@ public class Opinion {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "appuserid", nullable = false)
+    @ToString.Exclude
     private Appuser userid;
 
     @Column(name = "ispositive", nullable = false)
-    private Boolean ispositive = false;
+    private Boolean ispositive;
 
     @Column(name = "dateofopinion", nullable = false)
     private Instant dateofopinion;
@@ -52,8 +55,5 @@ public class Opinion {
     public int hashCode() {
         return getClass().hashCode();
     }
-    @Override
-    public String toString() {
-        return "";
-    }
+
 }
