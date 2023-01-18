@@ -10,7 +10,8 @@
 </head>
 <body>
 <div class="container">
-    <form class="form form-horizontal" onsubmit="confirmSubmit()" role="form" th:object="${opinion}" th:action="${url}" method="post">
+    <form id="form" class="form form-horizontal" role="form" th:object="${opinion}" th:action="${url}"
+          method="post">
         <h1>Dodaj opinię</h1>
         <div class="form-group">
             <textarea type="text" th:field="*{content}" class="form-control" id="Content"></textarea>
@@ -25,13 +26,45 @@
         </div>
         <div class="form-group">
             <p th:text="${error} ? 'Opinia nie może być pusta' : '' "></p>
-            <input type="submit" value="Submit">
         </div>
     </form>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Dodaj opinię</button>
+
+    <!--<form th:object="${plan}" th:action="${url}" method="post">-->
+    <!--    <p th:text="${plan.getPlanstatusid().getName()}"></p>-->
+    <!--    <input type="submit" class="btn btn-success" data-dismiss="modal" id="okBtn">-->
+    <!--</form>-->
+    <div class="modal fade" id="myModal">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Czy na pewno chcesz dodać opinię?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" onclick="form_submit()" class="btn btn-success" data-dismiss="modal"
+                            id="okBtn">Tak
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Nie</button>
+                    </form>
+                </div>
+                <script>
+                    function form_submit() {
+                        document.getElementById("form").submit();
+                    }
+                </script>
+
+
+            </div>
+        </div>
+    </div>
 </div>
-<script>
-    function confirmSubmit() {
-        return confirm("Czy na pewno chcesz dodać opinię?")
-    }</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
 </body>
 </html>

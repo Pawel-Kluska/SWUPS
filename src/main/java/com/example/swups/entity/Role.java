@@ -1,0 +1,10 @@
+package com.example.swups.entity;
+
+public enum Role {
+    KOMISJA_PROGRAMOWA_KIERUNKU,
+    RADA_KONSULTACYJNA,
+    RADA_DYSCYPLINY,
+    RADA_JAKOSCI_KSZTALCENIA,
+    KOMISJA_SENACKA_DS_KSZTALCENIA,
+    SENAT
+}

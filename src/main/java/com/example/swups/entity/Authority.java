@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @Entity
+@ToString
 @Table(name = "authorities")
 public class Authority {
     @Id
@@ -29,11 +31,6 @@ public class Authority {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Authority authority = (Authority) o;
         return id != null && Objects.equals(id, authority.id);
-    }
-
-    @Override
-    public String toString() {
-        return "";
     }
 
     @Override
