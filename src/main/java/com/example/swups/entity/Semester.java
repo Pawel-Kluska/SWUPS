@@ -21,7 +21,7 @@ public class Semester {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
     @ToString.Exclude
-    private PlanOfStudy planOfStudy;
+    private PlanOfStudies planOfStudies;
 
     @Column(name = "code")
     private String code;

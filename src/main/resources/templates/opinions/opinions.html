@@ -16,27 +16,27 @@
 <!--                <p th:text="${opinion.getId()}"></p>-->
 <!--            </div>-->
             <div class="col-2">
-                <p th:text="${opinion.getUserid().getAuthorityid().getName()}"></p>
+                <p th:text="${opinion.getUser().getAuthority().getName()}"></p>
             </div>
             <div class="col-4">
-                <p th:text="'Data dodania: '+${opinion.getDateofopinion()}"></p>
+                <p th:text="'Data dodania: '+${opinion.getDateOfOpinion()}"></p>
             </div>
             <div class="col-6">
-                <p th:text=" 'Data ostatniej modyfikacji: ' +${opinion.getDateofmodification()}"></p>
+                <p th:text=" 'Data ostatniej modyfikacji: ' +${opinion.getDateOfModification()}"></p>
             </div>
             <div class="col-2">
-                <div th:if="${opinion.getIspositive() == false}" class="text-danger">
+                <div th:if="${opinion.getIsPositive() == false}" class="text-danger">
                     <p>Negatywna</p>
                 </div>
-                <div th:if="${opinion.getIspositive() == true}" class=" text-success">
+                <div th:if="${opinion.getIsPositive() == true}" class=" text-success">
                     <p>Pozytywna</p>
                 </div>
             </div>
             <div class="col-4">
-                <p th:text="${'Wystawiona przez: ' +opinion.getUserid().getName()+' '+opinion.getUserid().getSurname() }"></p>
+                <p th:text="${'Wystawiona przez: ' +opinion.getUser().getName()+' '+opinion.getUser().getSurname() }"></p>
             </div>
             <div class="col-6">
-                <a class="btn btn-primary" th:href="@{/plans/{planId}/details/opinions/{opinionId}(planId=${opinion.getPlanofstudiesid().getId()}, opinionId=${opinion.getId()})}">Przeczytaj</a>
+                <a class="btn btn-primary" th:href="@{/plans/{planId}/details/opinions/{opinionId}(planId=${opinion.getPlanOfStudies().getId()}, opinionId=${opinion.getId()})}">Przeczytaj</a>
             </div>
 
     </div>

@@ -12,8 +12,10 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class PlanOfStudy {
+public class PlanOfStudies {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,7 @@ public class PlanOfStudy {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "formofstudiesid", nullable = false)
     @ToString.Exclude
-    private FormOfStudy formsOfStudy;
+    private FormOfStudy formOfStudy;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planstatusid", nullable = false)
@@ -68,7 +70,7 @@ public class PlanOfStudy {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        PlanOfStudy that = (PlanOfStudy) o;
+        PlanOfStudies that = (PlanOfStudies) o;
         return id != null && Objects.equals(id, that.id);
     }
 

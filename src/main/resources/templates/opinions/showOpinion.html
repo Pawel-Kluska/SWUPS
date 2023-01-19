@@ -16,7 +16,7 @@
             <p>Organ opiniujacy</p>
         </div>
         <div class="col">
-            <p th:text="${opinion.getUserid().getAuthorityid().getName()}">/p>
+            <p th:text="${opinion.getUser().getAuthority().getName()}">/p>
         </div>
     </div>
     <div class="row border">
@@ -24,7 +24,7 @@
             <p>Data modyfikacji</p>
         </div>
         <div class="col">
-            <p th:text="${opinion.getDateofmodification()}"></p>
+            <p th:text="${opinion.getDateOfModification()}"></p>
         </div>
     </div>
     <div class="row border">
@@ -32,7 +32,7 @@
             <p>Wystawiona przez</p>
         </div>
         <div class="col">
-            <p th:text="${opinion.getUserid().getName()}"></p>
+            <p th:text="${opinion.getUser().getName()}"></p>
         </div>
     </div>
     <div class="row border">
@@ -40,8 +40,8 @@
             <p>Status</p>
         </div>
         <div class="col">
-            <p th:if="${opinion.getIspositive() == true}">Pozytywna</p>
-            <p th:if="${opinion.getIspositive() == false}">Negatywna</p>
+            <p th:if="${opinion.getIsPositive() == true}">Pozytywna</p>
+            <p th:if="${opinion.getIsPositive() == false}">Negatywna</p>
         </div>
     </div>
 </div>

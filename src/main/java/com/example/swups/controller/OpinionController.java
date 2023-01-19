@@ -1,7 +1,7 @@
 package com.example.swups.controller;
 
 import com.example.swups.entity.Opinion;
-import com.example.swups.entity.PlanOfStudy;
+import com.example.swups.entity.PlanOfStudies;
 import com.example.swups.exceptions.EmptyOpinionContentException;
 import com.example.swups.service.OpinionService;
 import com.example.swups.service.PlanOfStudiesService;
@@ -24,8 +24,8 @@ public class OpinionController {
 
     @GetMapping
     public String getAllOpinions(Model model, @PathVariable String planId) {
-        PlanOfStudy planOfStudy = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        List<Opinion> opinions = opinionService.getOpinionsByplanofstudiesid(planOfStudy);
+        PlanOfStudies planOfStudies = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        List<Opinion> opinions = opinionService.getOpinionsByPlanOfStudies(planOfStudies);
         model.addAttribute("opinions", opinions);
 
         return "opinions/opinions";
@@ -41,8 +41,8 @@ public class OpinionController {
 
     @GetMapping("/add")
     public String getOpinionForm(Model model, @PathVariable String planId, @RequestParam(required = false) String error) {
-        PlanOfStudy planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        model.addAttribute("opinion", Opinion.builder().planOfStudy(planOfStudiesById).build());
+        PlanOfStudies planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        model.addAttribute("opinion", Opinion.builder().planOfStudies(planOfStudiesById).build());
         model.addAttribute("url", "/plans/" + planId + "/details/opinions/add");
         model.addAttribute("error", error);
         return "opinions/add";

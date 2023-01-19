@@ -24,12 +24,12 @@ public class Opinion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
     @ToString.Exclude
-    private PlanOfStudy planOfStudy;
+    private PlanOfStudies planOfStudies;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "appuserid", nullable = false)
     @ToString.Exclude
-    private Appuser appuser;
+    private User user;
 
     @Column(name = "ispositive", nullable = false)
     private Boolean isPositive;

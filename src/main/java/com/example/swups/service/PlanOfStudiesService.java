@@ -1,6 +1,6 @@
 package com.example.swups.service;
 
-import com.example.swups.entity.PlanOfStudy;
+import com.example.swups.entity.PlanOfStudies;
 import com.example.swups.repository.PlanOfStudiesRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +15,14 @@ public class PlanOfStudiesService {
 
     private final PlanOfStudiesRepository planOfStudiesRepository;
 
-    public List<PlanOfStudy> getPlansOfStudies() {
+    public List<PlanOfStudies> getPlansOfStudies() {
         return planOfStudiesRepository.findAll();
     }
-    public PlanOfStudy getPlanOfStudiesById(int id) {
-        Optional<PlanOfStudy> planById = planOfStudiesRepository.findById(id);
+    public PlanOfStudies getPlanOfStudiesById(int id) {
+        Optional<PlanOfStudies> planById = planOfStudiesRepository.findById(id);
         return planById.orElseThrow(EntityNotFoundException::new);
     }
-    public void savePlan(PlanOfStudy planOfStudy){
-        planOfStudiesRepository.save(planOfStudy);
+    public void savePlan(PlanOfStudies planOfStudies){
+        planOfStudiesRepository.save(planOfStudies);
     }
 }

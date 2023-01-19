@@ -1,9 +1,9 @@
 package com.example.swups.service;
 
 import com.example.swups.Utils;
-import com.example.swups.entity.Appuser;
+import com.example.swups.entity.User;
 import com.example.swups.entity.Opinion;
-import com.example.swups.entity.PlanOfStudy;
+import com.example.swups.entity.PlanOfStudies;
 import com.example.swups.exceptions.EmptyOpinionContentException;
 import com.example.swups.repository.OpinionRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,23 +23,22 @@ public class OpinionService {
     public List<Opinion> getOpinions(){
         return opinionRepository.findAll();
     }
-    public List<Opinion> getOpinionsByplanofstudiesid(PlanOfStudy planOfStudy) {
-       return opinionRepository.findOpinionByPlanOfStudy(planOfStudy);
+    public List<Opinion> getOpinionsByPlanOfStudies(PlanOfStudies planOfStudies) {
+       return opinionRepository.findOpinionsByPlanOfStudies(planOfStudies);
     }
     public Opinion getOpinionById(Integer id){
         return opinionRepository.getReferenceById(id);
     }
-
     public void saveOpinion(Opinion opinion, String planId) throws EmptyOpinionContentException, UserPrincipalNotFoundException {
-        Optional<Appuser> currentUser = Utils.getCurrentUser();
+        Optional<User> currentUser = Utils.getCurrentUser();
 
         if(currentUser.isEmpty()) {
             throw new UserPrincipalNotFoundException("User not logged in");
         }
 
-        PlanOfStudy planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        opinion.setPlanOfStudy(planOfStudiesById);
-        opinion.setAppuser(currentUser.get());
+        PlanOfStudies planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        opinion.setPlanOfStudies(planOfStudiesById);
+        opinion.setUser(currentUser.get());
         opinion.setDateOfOpinion(Instant.now());
         opinion.setDateOfModification(Instant.now());
 

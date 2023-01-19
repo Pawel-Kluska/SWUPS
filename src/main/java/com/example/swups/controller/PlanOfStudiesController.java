@@ -1,7 +1,7 @@
 package com.example.swups.controller;
 
 import com.example.swups.Utils;
-import com.example.swups.entity.PlanOfStudy;
+import com.example.swups.entity.PlanOfStudies;
 import com.example.swups.entity.PlanStatus;
 import com.example.swups.service.PlanOfStudiesService;
 import com.example.swups.service.PlanStatusService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/plans")
 @RequiredArgsConstructor
-public class PlansOfStudiesController {
+public class PlanOfStudiesController {
 
     private final PlanOfStudiesService planOfStudiesService;
     private final PlanStatusService planstatusService;
@@ -37,7 +37,7 @@ public class PlansOfStudiesController {
     }
 
     @PostMapping("/{id}/details")
-    public String acceptAPlan(@ModelAttribute PlanOfStudy plan) {
+    public String acceptAPlan(@ModelAttribute PlanOfStudies plan) {
         plan = planOfStudiesService.getPlanOfStudiesById(plan.getId());
         PlanStatus planStatus = planstatusService.getPlanStatusByName("Zatwierdzony");
         plan.setPlanStatus(planStatus);
