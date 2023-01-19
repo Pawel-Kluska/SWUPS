@@ -7,15 +7,17 @@ import org.hibernate.Hibernate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "courseforms")
+@Table(name = "planstatuses")
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
 @RequiredArgsConstructor
-public class Courseform {
+public class PlanStatus {
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "name")
@@ -25,7 +27,7 @@ public class Courseform {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Courseform that = (Courseform) o;
+        PlanStatus that = (PlanStatus) o;
         return id != null && Objects.equals(id, that.id);
     }
 

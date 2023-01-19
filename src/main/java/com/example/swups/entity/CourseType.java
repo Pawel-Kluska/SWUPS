@@ -7,12 +7,12 @@ import org.hibernate.Hibernate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "formsofstudies")
+@Table(name = "coursetypes")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Formsofstudy {
+public class CourseType {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Formsofstudy {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Formsofstudy that = (Formsofstudy) o;
+        CourseType that = (CourseType) o;
         return id != null && Objects.equals(id, that.id);
     }
 

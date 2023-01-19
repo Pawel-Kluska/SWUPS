@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Plansofstudy {
+public class PlanOfStudy {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,53 +22,53 @@ public class Plansofstudy {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "profileid", nullable = false)
     @ToString.Exclude
-    private Profile profileid;
+    private Profile profile;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "formofstudiesid", nullable = false)
     @ToString.Exclude
-    private Formsofstudy formofstudiesid;
+    private FormOfStudy formsOfStudy;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planstatusid", nullable = false)
     @ToString.Exclude
-    private Planstatus planstatusid;
+    private PlanStatus planStatus;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "educationlevelid", nullable = false)
     @ToString.Exclude
-    private Educationlevel educationlevelid;
+    private EducationLevel educationLevel;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "degreeid", nullable = false)
     @ToString.Exclude
-    private Degree degreeid;
+    private Degree degree;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "fieldofstudyid", nullable = false)
     @ToString.Exclude
-    private Fieldsofstudy fieldofstudyid;
+    private FieldOfStudy fieldOfStudy;
 
     @Column(name = "identifier")
     private String identifier;
 
     @Column(name = "dateofcreation", nullable = false)
-    private Instant dateofcreation;
+    private Instant dateOfCreation;
 
     @Column(name = "specialization")
     private String specialization;
 
     @Column(name = "languageofstudy", nullable = false)
-    private String languageofstudy;
+    private String languageOfStudy;
 
     @Column(name = "educationcycle")
-    private String educationcycle;
+    private String educationCycle;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Plansofstudy that = (Plansofstudy) o;
+        PlanOfStudy that = (PlanOfStudy) o;
         return id != null && Objects.equals(id, that.id);
     }
 

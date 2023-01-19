@@ -6,39 +6,26 @@ import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
-@Entity
-@Table(name = "fieldsofstudy")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Fieldsofstudy {
+@Entity
+@Table(name = "blockcharacters")
+public class BlockCharacter {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "disciplineid", nullable = false)
-    @ToString.Exclude
-    private Discipline disciplineid;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "facultyid", nullable = false)
-    @ToString.Exclude
-    private Faculty facultyid;
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "shortname")
-    private String shortname;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Fieldsofstudy that = (Fieldsofstudy) o;
+        BlockCharacter that = (BlockCharacter) o;
         return id != null && Objects.equals(id, that.id);
     }
 

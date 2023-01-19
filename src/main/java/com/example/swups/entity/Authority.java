@@ -1,10 +1,7 @@
 package com.example.swups.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.util.Objects;
@@ -14,6 +11,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @ToString
+@Builder
+@AllArgsConstructor
 @Table(name = "authorities")
 public class Authority {
     @Id

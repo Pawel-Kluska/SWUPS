@@ -1,14 +1,12 @@
 package com.example.swups.service;
 
-import com.example.swups.config.Utils;
+import com.example.swups.Utils;
 import com.example.swups.entity.Appuser;
 import com.example.swups.entity.Opinion;
-import com.example.swups.entity.Plansofstudy;
+import com.example.swups.entity.PlanOfStudy;
 import com.example.swups.exceptions.EmptyOpinionContentException;
 import com.example.swups.repository.OpinionRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
@@ -18,15 +16,15 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class OpinionsService {
+public class OpinionService {
     private final OpinionRepository opinionRepository;
-    private final PlansOfStudiesService plansOfStudiesService;
+    private final PlanOfStudiesService planOfStudiesService;
 
     public List<Opinion> getOpinions(){
         return opinionRepository.findAll();
     }
-    public List<Opinion> getOpinionsByplanofstudiesid(Plansofstudy plansofstudy) {
-       return opinionRepository.findOpinionByPlanofstudiesid(plansofstudy);
+    public List<Opinion> getOpinionsByplanofstudiesid(PlanOfStudy planOfStudy) {
+       return opinionRepository.findOpinionByPlanOfStudy(planOfStudy);
     }
     public Opinion getOpinionById(Integer id){
         return opinionRepository.getReferenceById(id);
@@ -39,11 +37,11 @@ public class OpinionsService {
             throw new UserPrincipalNotFoundException("User not logged in");
         }
 
-        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        opinion.setPlanofstudiesid(planOfStudiesById);
-        opinion.setUserid(currentUser.get());
-        opinion.setDateofopinion(Instant.now());
-        opinion.setDateofmodification(Instant.now());
+        PlanOfStudy planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        opinion.setPlanOfStudy(planOfStudiesById);
+        opinion.setAppuser(currentUser.get());
+        opinion.setDateOfOpinion(Instant.now());
+        opinion.setDateOfModification(Instant.now());
 
         if (opinion.getContent().equals("")) {
             throw new EmptyOpinionContentException("Opinion content can't be empty");

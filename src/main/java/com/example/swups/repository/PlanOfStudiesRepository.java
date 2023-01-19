@@ -1,11 +1,9 @@
 package com.example.swups.repository;
 
-import com.example.swups.entity.Plansofstudy;
+import com.example.swups.entity.PlanOfStudy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PlansOfStudiesRepository extends JpaRepository<Plansofstudy, Integer> {
+public interface PlanOfStudiesRepository extends JpaRepository<PlanOfStudy, Integer> {
 }

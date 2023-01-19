@@ -6,13 +6,13 @@ import org.hibernate.Hibernate;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "courseforms")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
-@Table(name = "blockcharacters")
-public class Blockcharacter {
+public class CourseForm {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Blockcharacter {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Blockcharacter that = (Blockcharacter) o;
+        CourseForm that = (CourseForm) o;
         return id != null && Objects.equals(id, that.id);
     }
 

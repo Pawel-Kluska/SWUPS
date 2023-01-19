@@ -21,7 +21,7 @@ public class Semester {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
     @ToString.Exclude
-    private Plansofstudy planofstudiesid;
+    private PlanOfStudy planOfStudy;
 
     @Column(name = "code")
     private String code;
@@ -30,7 +30,7 @@ public class Semester {
     private Integer number;
 
     @Column(name = "ectspointsdeficite", nullable = false)
-    private Integer ectspointsdeficite;
+    private Integer ectsPointsDeficite;
 
     @Override
     public boolean equals(Object o) {

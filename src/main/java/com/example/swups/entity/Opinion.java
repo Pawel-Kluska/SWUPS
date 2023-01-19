@@ -24,24 +24,24 @@ public class Opinion {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "planofstudiesid", nullable = false)
     @ToString.Exclude
-    private Plansofstudy planofstudiesid;
+    private PlanOfStudy planOfStudy;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "appuserid", nullable = false)
     @ToString.Exclude
-    private Appuser userid;
+    private Appuser appuser;
 
     @Column(name = "ispositive", nullable = false)
-    private Boolean ispositive;
+    private Boolean isPositive;
 
     @Column(name = "dateofopinion", nullable = false)
-    private Instant dateofopinion;
+    private Instant dateOfOpinion;
 
     @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "dateofmodification", nullable = false)
-    private Instant dateofmodification;
+    private Instant dateOfModification;
 
     @Override
     public boolean equals(Object o) {

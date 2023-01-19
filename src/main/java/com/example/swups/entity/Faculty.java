@@ -22,7 +22,7 @@ public class Faculty {
     private String name;
 
     @Column(name = "shortname")
-    private String shortname;
+    private String shortName;
 
     @Override
     public boolean equals(Object o) {

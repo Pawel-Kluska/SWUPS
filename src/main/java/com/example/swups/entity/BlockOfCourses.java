@@ -13,7 +13,7 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Blocksofcourses {
+public class BlockOfCourses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -22,12 +22,12 @@ public class Blocksofcourses {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "blockcharacterid", nullable = false)
     @ToString.Exclude
-    private Blockcharacter blockcharacterid;
+    private BlockCharacter blockCharacter;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "semesterid", nullable = false)
     @ToString.Exclude
-    private Semester semesterid;
+    private Semester semester;
 
     @Column(name = "code")
     private String code;
@@ -48,7 +48,7 @@ public class Blocksofcourses {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Blocksofcourses that = (Blocksofcourses) o;
+        BlockOfCourses that = (BlockOfCourses) o;
         return id != null && Objects.equals(id, that.id);
     }
 

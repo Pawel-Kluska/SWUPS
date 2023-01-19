@@ -22,27 +22,27 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "wayofcreditingid", nullable = false)
     @ToString.Exclude
-    private Waysofcrediting wayofcreditingid;
+    private WayOfCrediting waysOfCrediting;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "coursetypeid", nullable = false)
     @ToString.Exclude
-    private Coursetype coursetypeid;
+    private CourseType courseType;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "coursekindid", nullable = false)
     @ToString.Exclude
-    private Coursekind coursekindid;
+    private CourseKind courseKind;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "coursecharacterid", nullable = false)
     @ToString.Exclude
-    private Coursecharacter coursecharacterid;
+    private CourseCharacter courseCharacter;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "courseformid", nullable = false)
     @ToString.Exclude
-    private Courseform courseformid;
+    private CourseForm courseForm;
 
     @Column(name = "code")
     private String code;
@@ -51,29 +51,29 @@ public class Course {
     private String name;
 
     @Column(name = "weeklysumofhours", nullable = false)
-    private Integer weeklysumofhours;
+    private Integer weeklySumOfHours;
 
     @Column(name = "sumofzzuhours", nullable = false)
-    private Integer sumofzzuhours;
+    private Integer sumOfZZHours;
 
     @Column(name = "sumofcnpshours", nullable = false)
-    private Integer sumofcnpshours;
+    private Integer sumOfCnpsHours;
 
     @Column(name = "sumofectspoints", nullable = false)
-    private Integer sumofectspoints;
+    private Integer sumOfEctsPoints;
 
     @Column(name = "sumofectspointsfrombuclasses", nullable = false)
-    private Float sumofectspointsfrombuclasses;
+    private Float sumOfEctsPointsFromBuClasses;
 
     @Column(name = "sumofectspointsfromdnclasses", nullable = false)
-    private Float sumofectspointsfromdnclasses;
+    private Float sumOfEctsPointsFromDnClasses;
 
     @Column(name = "discriminator", nullable = false)
     private String discriminator;
 
     @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
     @ToString.Exclude
-    Set<Blocksofcourses> blocksOfCourses;
+    Set<BlockOfCourses> blocksOfCours;
 
     @Override
     public boolean equals(Object o) {

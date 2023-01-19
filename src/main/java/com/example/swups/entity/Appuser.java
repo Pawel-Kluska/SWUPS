@@ -28,7 +28,7 @@ public class Appuser implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "authorityid", nullable = false)
     @ToString.Exclude
-    private Authority authorityid;
+    private Authority authority;
 
     @Column(name = "login")
     private String login;
@@ -57,7 +57,7 @@ public class Appuser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(authorityid.getName()));
+        return List.of(new SimpleGrantedAuthority(authority.getName()));
     }
 
     @Override

@@ -1,21 +1,17 @@
 package com.example.swups.controller;
 
-import com.example.swups.config.Utils;
-import com.example.swups.entity.Appuser;
 import com.example.swups.entity.Opinion;
-import com.example.swups.entity.Plansofstudy;
+import com.example.swups.entity.PlanOfStudy;
 import com.example.swups.exceptions.EmptyOpinionContentException;
-import com.example.swups.service.OpinionsService;
-import com.example.swups.service.PlansOfStudiesService;
+import com.example.swups.service.OpinionService;
+import com.example.swups.service.PlanOfStudiesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 
@@ -23,13 +19,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OpinionController {
 
-    private final OpinionsService opinionsService;
-    private final PlansOfStudiesService plansOfStudiesService;
+    private final OpinionService opinionService;
+    private final PlanOfStudiesService planOfStudiesService;
 
     @GetMapping
     public String getAllOpinions(Model model, @PathVariable String planId) {
-        Plansofstudy plansofstudy = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        List<Opinion> opinions = opinionsService.getOpinionsByplanofstudiesid(plansofstudy);
+        PlanOfStudy planOfStudy = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        List<Opinion> opinions = opinionService.getOpinionsByplanofstudiesid(planOfStudy);
         model.addAttribute("opinions", opinions);
 
         return "opinions/opinions";
@@ -37,7 +33,7 @@ public class OpinionController {
 
     @GetMapping("/{opinionId}")
     public String getOpinionContent(Model model, @PathVariable String opinionId) {
-        Opinion opinion = opinionsService.getOpinionById(Integer.parseInt(opinionId));
+        Opinion opinion = opinionService.getOpinionById(Integer.parseInt(opinionId));
         model.addAttribute("opinion", opinion);
         return "opinions/showOpinion";
 
@@ -45,8 +41,8 @@ public class OpinionController {
 
     @GetMapping("/add")
     public String getOpinionForm(Model model, @PathVariable String planId, @RequestParam(required = false) String error) {
-        Plansofstudy planOfStudiesById = plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
-        model.addAttribute("opinion", Opinion.builder().planofstudiesid(planOfStudiesById).build());
+        PlanOfStudy planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
+        model.addAttribute("opinion", Opinion.builder().planOfStudy(planOfStudiesById).build());
         model.addAttribute("url", "/plans/" + planId + "/details/opinions/add");
         model.addAttribute("error", error);
         return "opinions/add";
@@ -55,7 +51,7 @@ public class OpinionController {
     @PostMapping("/add")
     public String saveOpinionForm(@ModelAttribute Opinion opinion, @PathVariable String planId) throws UserPrincipalNotFoundException {
         try {
-            opinionsService.saveOpinion(opinion, planId);
+            opinionService.saveOpinion(opinion, planId);
         } catch (EmptyOpinionContentException e) {
             return "redirect:/plans/" + planId + "/details/opinions/add?error=true";
         } catch (UserPrincipalNotFoundException e) {

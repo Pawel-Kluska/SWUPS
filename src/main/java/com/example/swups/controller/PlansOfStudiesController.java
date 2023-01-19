@@ -1,10 +1,10 @@
 package com.example.swups.controller;
 
-import com.example.swups.config.Utils;
-import com.example.swups.entity.Plansofstudy;
-import com.example.swups.entity.Planstatus;
-import com.example.swups.service.PlansOfStudiesService;
-import com.example.swups.service.PlanstatusService;
+import com.example.swups.Utils;
+import com.example.swups.entity.PlanOfStudy;
+import com.example.swups.entity.PlanStatus;
+import com.example.swups.service.PlanOfStudiesService;
+import com.example.swups.service.PlanStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,33 +15,33 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class PlansOfStudiesController {
 
-    private final PlansOfStudiesService plansOfStudiesService;
-    private final PlanstatusService planstatusService;
+    private final PlanOfStudiesService planOfStudiesService;
+    private final PlanStatusService planstatusService;
 
     @GetMapping
     public String getAllPlans(Model model) {
-        model.addAttribute("plansList", plansOfStudiesService.getPlansOfStudies());
+        model.addAttribute("plansList", planOfStudiesService.getPlansOfStudies());
         return "plansOfStudies/plans";
     }
 
     @GetMapping("/{id}/details")
     public String getPlanDetails(Model model, @PathVariable String id) {
-        model.addAttribute("plan", plansOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id)));
+        model.addAttribute("plan", planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(id)));
         model.addAttribute("addOpinionUrl", "/plans/" + id + "/details/opinions/add");
         model.addAttribute("addOpinionsUrl", "/plans/" + id + "/details/opinions");
         model.addAttribute("url", "/plans/" + id + "/details");
-        if (Utils.getCurrentUser().get().getAuthorityid().getName().equals("SENAT")) {
+        if (Utils.currentUserHasRole("SENAT")) {
             model.addAttribute("isSenat", true);
         }
         return "plansOfStudies/details";
     }
 
     @PostMapping("/{id}/details")
-    public String acceptAPlan(@ModelAttribute Plansofstudy plan) {
-        plan = plansOfStudiesService.getPlanOfStudiesById(plan.getId());
-        Planstatus planStatus = planstatusService.getPlanStatusByName("Zatwierdzony");
-        plan.setPlanstatusid(planStatus);
-        plansOfStudiesService.savePlan(plan);
+    public String acceptAPlan(@ModelAttribute PlanOfStudy plan) {
+        plan = planOfStudiesService.getPlanOfStudiesById(plan.getId());
+        PlanStatus planStatus = planstatusService.getPlanStatusByName("Zatwierdzony");
+        plan.setPlanStatus(planStatus);
+        planOfStudiesService.savePlan(plan);
         return "redirect:/plans/" + plan.getId() + "/details";
     }
 }
