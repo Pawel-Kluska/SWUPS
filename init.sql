@@ -243,117 +243,117 @@ ALTER TABLE BlocksOfCourses
 -- Sample data
 
 BEGIN;
-INSERT INTO public.blockcharacters (id, name)
-VALUES (1, 'obowiazkowy');
-INSERT INTO public.blockcharacters (id, name)
-VALUES (2, 'wybieralny');
-INSERT INTO public.coursecharacters (id, name)
-VALUES (1, 'Wyklad');
-INSERT INTO public.coursecharacters (id, name)
-VALUES (2, 'cwiczenia');
-INSERT INTO public.coursecharacters (id, name)
-VALUES (3, 'laboratorium');
-INSERT INTO public.coursekinds (id, name)
-VALUES (1, 'podstawowy');
-INSERT INTO public.coursekinds (id, name)
-VALUES (2, 'ogolnouczelniany');
-INSERT INTO public.coursekinds (id, name)
-VALUES (3, 'ksztalcenia ogolnego');
-INSERT INTO public.coursetypes (id, name)
-VALUES (1, 'Obowiazkowy');
-INSERT INTO public.coursetypes (id, name)
-VALUES (2, 'Wybieralny');
-INSERT INTO public.degrees (id, name)
-VALUES (1, 'Inzynier');
-INSERT INTO public.degrees (id, name)
-VALUES (2, 'Inzynier Architekt');
-INSERT INTO public.disciplines (id, name)
-VALUES (1, 'Informatyka techniczna i telekomunikacja');
-INSERT INTO public.disciplines (id, name)
-VALUES (2, 'Architektura i urbanistyka');
-INSERT INTO public.educationlevels (id, name)
-VALUES (1, 'Studia pierwszego stopnia inzynierskie');
-INSERT INTO public.educationlevels (id, name)
-VALUES (2, 'Studia pierwszego stopnia licencjackie');
-INSERT INTO public.educationlevels (id, name)
-VALUES (3, 'Studia drugiego stopnia');
-INSERT INTO public.educationlevels (id, name)
-VALUES (4, 'Studia jednolite magisterskie');
-INSERT INTO public.faculties (id, name, shortname)
-VALUES (1, 'Wydzial Architektury', 'W1');
-INSERT INTO public.faculties (id, name, shortname)
-VALUES (2, 'Wydzial Informatyki i Telekomunikacji', 'W4n');
-INSERT INTO public.faculties (id, name, shortname)
-VALUES (3, 'Wydzial Zarzadzania', 'W8n');
-INSERT INTO public.fieldsofstudy (id, disciplineid, facultyid, name, shortname)
-VALUES (1, 1, 2, 'Informatyka stosowana', 'Ist');
-INSERT INTO public.fieldsofstudy (id, disciplineid, facultyid, name, shortname)
-VALUES (2, 2, 1, 'Architektura', 'Arch');
-INSERT INTO public.formsofstudies (id, name)
-VALUES (1, 'Stacjonarna');
-INSERT INTO public.formsofstudies (id, name)
-VALUES (2, 'niestacjonarna');
-INSERT INTO public.planstatuses (id, name)
-VALUES (1, 'Nierozpatrzony');
-INSERT INTO public.planstatuses (id, name)
-VALUES (2, 'niezatwierdzony');
-INSERT INTO public.planstatuses (id, name)
-VALUES (3, 'Zatwierdzony');
-INSERT INTO public.profiles (id, name)
-VALUES (1, 'ogólnoakademicki');
-INSERT INTO public.profiles (id, name)
-VALUES (2, 'Praktyczny');
-INSERT INTO public.waysofcrediting (id, name)
-VALUES (1, 'Egzamin');
-INSERT INTO public.waysofcrediting (id, name)
-VALUES (2, 'zaliczenie');
-INSERT INTO public.plansofstudies (id, profileid, formofstudiesid, planstatusid, educationlevelid, degreeid,
+INSERT INTO public.blockcharacters (name)
+VALUES ('obowiazkowy');
+INSERT INTO public.blockcharacters (name)
+VALUES ('wybieralny');
+INSERT INTO public.coursecharacters (name)
+VALUES ('Wyklad');
+INSERT INTO public.coursecharacters (name)
+VALUES ('cwiczenia');
+INSERT INTO public.coursecharacters (name)
+VALUES ('laboratorium');
+INSERT INTO public.coursekinds (name)
+VALUES ('podstawowy');
+INSERT INTO public.coursekinds (name)
+VALUES ('ogolnouczelniany');
+INSERT INTO public.coursekinds (name)
+VALUES ('ksztalcenia ogolnego');
+INSERT INTO public.coursetypes (name)
+VALUES ('Obowiazkowy');
+INSERT INTO public.coursetypes (name)
+VALUES ('Wybieralny');
+INSERT INTO public.degrees (name)
+VALUES ('Inzynier');
+INSERT INTO public.degrees (name)
+VALUES ('Inzynier Architekt');
+INSERT INTO public.disciplines (name)
+VALUES ('Informatyka techniczna i telekomunikacja');
+INSERT INTO public.disciplines (name)
+VALUES ('Architektura i urbanistyka');
+INSERT INTO public.educationlevels (name)
+VALUES ('Studia pierwszego stopnia inzynierskie');
+INSERT INTO public.educationlevels (name)
+VALUES ('Studia pierwszego stopnia licencjackie');
+INSERT INTO public.educationlevels (name)
+VALUES ('Studia drugiego stopnia');
+INSERT INTO public.educationlevels (name)
+VALUES ('Studia jednolite magisterskie');
+INSERT INTO public.faculties (name, shortname)
+VALUES ('Wydzial Architektury', 'W1');
+INSERT INTO public.faculties (name, shortname)
+VALUES ('Wydzial Informatyki i Telekomunikacji', 'W4n');
+INSERT INTO public.faculties (name, shortname)
+VALUES ('Wydzial Zarzadzania', 'W8n');
+INSERT INTO public.fieldsofstudy (disciplineid, facultyid, name, shortname)
+VALUES (1, 2, 'Informatyka stosowana', 'Ist');
+INSERT INTO public.fieldsofstudy (disciplineid, facultyid, name, shortname)
+VALUES (2, 1, 'Architektura', 'Arch');
+INSERT INTO public.formsofstudies (name)
+VALUES ('Stacjonarna');
+INSERT INTO public.formsofstudies (name)
+VALUES ('niestacjonarna');
+INSERT INTO public.planstatuses (name)
+VALUES ('Nierozpatrzony');
+INSERT INTO public.planstatuses (name)
+VALUES ('niezatwierdzony');
+INSERT INTO public.planstatuses (name)
+VALUES ('Zatwierdzony');
+INSERT INTO public.profiles (name)
+VALUES ('ogólnoakademicki');
+INSERT INTO public.profiles (name)
+VALUES ('Praktyczny');
+INSERT INTO public.waysofcrediting (name)
+VALUES ('Egzamin');
+INSERT INTO public.waysofcrediting (name)
+VALUES ('zaliczenie');
+INSERT INTO public.plansofstudies (profileid, formofstudiesid, planstatusid, educationlevelid, degreeid,
                                    fieldofstudyid, identifier, dateofcreation, specialization, languageofstudy,
                                    educationcycle)
-VALUES (1, 1, 1, 1, 1, 1, 1, 'IST2022', '2023-01-14 18:04:16.000000', 'Brak', 'Polski', '2022/2023');
-INSERT INTO public.plansofstudies (id, profileid, formofstudiesid, planstatusid, educationlevelid, degreeid,
+VALUES (1, 1, 1, 1, 1, 1, 'IST2022', '2023-01-14 18:04:16.000000', 'Brak', 'Polski', '2022/2023');
+INSERT INTO public.plansofstudies (profileid, formofstudiesid, planstatusid, educationlevelid, degreeid,
                                    fieldofstudyid, identifier, dateofcreation, specialization, languageofstudy,
                                    educationcycle)
-VALUES (2, 1, 1, 2, 1, 2, 2, 'ARCH2022', '2023-01-14 18:04:56.000000', 'Wnetrza', 'Polski', '2022/2023');
-INSERT INTO public.semesters (id, planofstudiesid, code, number, ectspointsdeficite)
-VALUES (1, 1, 'IST_2023_Zima', 3, 5);
-INSERT INTO public.semesters (id, planofstudiesid, code, number, ectspointsdeficite)
-VALUES (2, 2, 'ARCH_2022_Zima', 2, 2);
-INSERT INTO public.blocksofcourses (id, blockcharacterid, semesterid, code, name)
-VALUES (1, 1, 1, 'OB_IST_3', 'Paradygmaty Programowania');
-INSERT INTO public.blocksofcourses (id, blockcharacterid, semesterid, code, name)
-VALUES (2, 2, 2, 'WYB_ARCH_1', 'Belki');
-INSERT INTO public.authorities (id, disciplineid, facultyid, fieldofstudyid, name, code)
-VALUES (1, 1, 2, 1, 'Rada informatyki', 'IST1');
-INSERT INTO public.authorities (id, disciplineid, facultyid, fieldofstudyid, name, code)
-VALUES (2, 2, 1, 2, 'Rada Architektury', 'ARCH1');
-INSERT INTO public.appusers (id, authorityid, login, password, name, surname)
-VALUES (1, 2, 'TBroma', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Tomasz', 'Broma');
-INSERT INTO public.appusers (id, authorityid, login, password, name, surname)
-VALUES (2, 1, 'BHnatkowska', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Bogumila', 'Hnatkowska');
+VALUES (1, 1, 2, 1, 2, 2, 'ARCH2022', '2023-01-14 18:04:56.000000', 'Wnetrza', 'Polski', '2022/2023');
+INSERT INTO public.semesters (planofstudiesid, code, number, ectspointsdeficite)
+VALUES (1, 'IST_2023_Zima', 3, 5);
+INSERT INTO public.semesters (planofstudiesid, code, number, ectspointsdeficite)
+VALUES (2, 'ARCH_2022_Zima', 2, 2);
+INSERT INTO public.blocksofcourses (blockcharacterid, semesterid, code, name)
+VALUES (1, 1, 'OB_IST_3', 'Paradygmaty Programowania');
+INSERT INTO public.blocksofcourses (blockcharacterid, semesterid, code, name)
+VALUES (2, 2, 'WYB_ARCH_1', 'Belki');
+INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
+VALUES (1, 2, 1, 'Rada informatyki', 'IST1');
+INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
+VALUES (2, 1, 2, 'Rada Architektury', 'ARCH1');
+INSERT INTO public.appusers (authorityid, login, password, name, surname)
+VALUES (2, 'TBroma', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Tomasz', 'Broma');
+INSERT INTO public.appusers (authorityid, login, password, name, surname)
+VALUES (1, 'BHnatkowska', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Bogumila', 'Hnatkowska');
 
-INSERT INTO public.courseforms (id, name)
-VALUES (1, 'tradycyjna');
-INSERT INTO public.courseforms (id, name)
-VALUES (2, 'zdalna');
-INSERT INTO public.courses (id, wayofcreditingid, coursetypeid, coursekindid, coursecharacterid, courseformid, code,
+INSERT INTO public.courseforms (name)
+VALUES ('tradycyjna');
+INSERT INTO public.courseforms (name)
+VALUES ('zdalna');
+INSERT INTO public.courses (wayofcreditingid, coursetypeid, coursekindid, coursecharacterid, courseformid, code,
                             name, weeklysumofhours, sumofzzuhours, sumofcnpshours, sumofectspoints,
                             sumofectspointsfrombuclasses, sumofectspointsfromdnclasses, discriminator)
-VALUES (1, 1, 1, 1, 1, 1, 'INZ004360W', 'Projektowanie oprogramowania', 2, 30, 90, 4, 1.8, 3, 'Course');
-INSERT INTO public.courses (id, wayofcreditingid, coursetypeid, coursekindid, coursecharacterid, courseformid, code,
+VALUES (1, 1, 1, 1, 1, 'INZ004360W', 'Projektowanie oprogramowania', 2, 30, 90, 4, 1.8, 3, 'Course');
+INSERT INTO public.courses (wayofcreditingid, coursetypeid, coursekindid, coursecharacterid, courseformid, code,
                             name, weeklysumofhours, sumofzzuhours, sumofcnpshours, sumofectspoints,
                             sumofectspointsfrombuclasses, sumofectspointsfromdnclasses, discriminator)
-VALUES (2, 2, 2, 2, 2, 2, 'INZ002012L', 'Programowanie systemow webowych', 4, 30, 90, 5, 2.4, 4, 'Group of courses');
+VALUES (2, 2, 2, 2, 2, 'INZ002012L', 'Programowanie systemow webowych', 4, 30, 90, 5, 2.4, 4, 'Group of courses');
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid)
 VALUES (1, 2);
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid)
 VALUES (1, 1);
 INSERT INTO public.blockofcourses_courses (blockofcoursesid, courseid)
 VALUES (2, 1);
--- INSERT INTO public.opinions (id, planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification)
--- VALUES (1, 1, 1, true, '2023-01-14 19:16:34.000000', 'Swietny plan', '2023-01-14 19:18:03.000000');
--- INSERT INTO public.opinions (id, planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification)
--- VALUES (2, 2, 2, false, '2023-01-02 19:18:35.000000', 'Zly plan', '2023-01-18 19:18:52.000000');
+INSERT INTO public.opinions (planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification)
+VALUES (1, 1, true, '2023-01-14 19:16:34.000000', 'Swietny plan', '2023-01-14 19:18:03.000000');
+INSERT INTO public.opinions (planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification)
+VALUES (2, 2, false, '2023-01-02 19:18:35.000000', 'Zly plan', '2023-01-18 19:18:52.000000');
 
 
 COMMIT;
