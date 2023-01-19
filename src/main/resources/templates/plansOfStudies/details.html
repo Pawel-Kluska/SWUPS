@@ -90,7 +90,7 @@
         </div>
     </div>
 </div>
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Zatwierdź plan</button>
+<button th:if="${isSenat}" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Zatwierdź plan</button>
 
 <!--<form th:object="${plan}" th:action="${url}" method="post">-->
 <!--    <p th:text="${plan.getPlanstatusid().getName()}"></p>-->

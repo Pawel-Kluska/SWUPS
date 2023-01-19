@@ -327,10 +327,14 @@ INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, c
 VALUES (1, 2, 1, 'Rada informatyki', 'IST1');
 INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
 VALUES (2, 1, 2, 'Rada Architektury', 'ARCH1');
+INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
+VALUES (2, 1, 2, 'SENAT', 'SEN1');
 INSERT INTO public.appusers (authorityid, login, password, name, surname)
 VALUES (2, 'TBroma', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Tomasz', 'Broma');
 INSERT INTO public.appusers (authorityid, login, password, name, surname)
 VALUES (1, 'BHnatkowska', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Bogumila', 'Hnatkowska');
+INSERT INTO public.appusers (authorityid, login, password, name, surname)
+VALUES (3, 'JKowalski', '$2a$10$h3FHbtqm4biDydKAlMXDmOnYx9tWRtGNP7rpNhsaf5pjUi4uvCznS', 'Jan', 'Kowalski');
 
 INSERT INTO public.courseforms (name)
 VALUES ('tradycyjna');
