@@ -87,7 +87,7 @@ public class OpinionServiceTest {
     void saveOpinionSuccessTest() throws UserPrincipalNotFoundException, EmptyOpinionContentException {
         //given
 
-        TestUtils.logInUser();
+        TestUtils.logInUser("ROLE");
 
         String planOfStudiesId = "1";
         PlanOfStudies planOfStudies = PlanOfStudies.builder()
@@ -145,7 +145,7 @@ public class OpinionServiceTest {
     void saveOpinionEmptyTest() throws UserPrincipalNotFoundException, EmptyOpinionContentException {
         //given
 
-        TestUtils.logInUser();
+        TestUtils.logInUser("ROLE");
 
         String planOfStudiesId = "1";
         PlanOfStudies planOfStudies = PlanOfStudies.builder()

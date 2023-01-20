@@ -11,6 +11,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@Builder
 @RequiredArgsConstructor
 public class Degree {
     @Id

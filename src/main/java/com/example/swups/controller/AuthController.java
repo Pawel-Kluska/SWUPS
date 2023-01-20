@@ -9,7 +9,6 @@ public class AuthController {
 
     @GetMapping("/login")
     public String viewLoginPage() {
-        Utils.getCurrentUser();
         return "login";
     }
 }

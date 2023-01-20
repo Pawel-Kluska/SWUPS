@@ -10,6 +10,8 @@ import java.util.Objects;
 @Table(name = "educationlevels")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @ToString
 @RequiredArgsConstructor
 public class EducationLevel {

@@ -54,8 +54,6 @@ public class OpinionController {
             opinionService.saveOpinion(opinion, planId);
         } catch (EmptyOpinionContentException e) {
             return "redirect:/plans/" + planId + "/details/opinions/add?error=true";
-        } catch (UserPrincipalNotFoundException e) {
-            return "redirect:/plans/" + planId + "/details/opinions/add?error=true"; //Trzeba dac komunikat ze nie zalogowany
         }
         return "redirect:/plans/" + planId + "/details/opinions";
     }
