@@ -89,7 +89,7 @@ CREATE TABLE StudyEffects
     code        varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
     PRIMARY KEY (ID)
-)
+);
 
 CREATE TABLE AppUsers
 (
@@ -245,10 +245,10 @@ ALTER TABLE Courses
     ADD FOREIGN KEY (CourseTypeID) REFERENCES CourseTypes (ID);
 ALTER TABLE Courses
     ADD FOREIGN KEY (WayOfCreditingID) REFERENCES WaysOfCrediting (ID);
-ALTER TABLE Courses
-    ADD FOREIGN KEY (CourseID) REFERENCES Course(ID);
 ALTER TABLE BlocksOfCourses
     ADD FOREIGN KEY (BlockCharacterID) REFERENCES BlockCharacters (ID);
+ALTER TABLE StudyEffects
+    ADD FOREIGN KEY (CourseID) REFERENCES Courses (ID);
 
 
 -- Sample data
