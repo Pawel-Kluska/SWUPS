@@ -82,6 +82,15 @@ CREATE TABLE Degrees
     PRIMARY KEY (ID)
 );
 
+CREATE TABLE StudyEffects
+(
+    ID          SERIAL NOT NULL,
+    CourseID    integer,
+    code        varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
+    PRIMARY KEY (ID)
+)
+
 CREATE TABLE AppUsers
 (
     ID          SERIAL  NOT NULL,
@@ -236,6 +245,8 @@ ALTER TABLE Courses
     ADD FOREIGN KEY (CourseTypeID) REFERENCES CourseTypes (ID);
 ALTER TABLE Courses
     ADD FOREIGN KEY (WayOfCreditingID) REFERENCES WaysOfCrediting (ID);
+ALTER TABLE Courses
+    ADD FOREIGN KEY (CourseID) REFERENCES Course(ID);
 ALTER TABLE BlocksOfCourses
     ADD FOREIGN KEY (BlockCharacterID) REFERENCES BlockCharacters (ID);
 
