@@ -43,81 +43,81 @@
     </nav>
     <div class="container mt-4">
         <h1>Tworzenie kursu</h1>
-        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" method="post" th:object="${course}">
+        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" action="add" method="post" th:object="${course}">
             <div class="col-md-6">
                 <label for="code" class="form-label">Kod kursu:</label>
-                <input type="text" th:field="*{code}" class="form-control" id="code" name="code" required>
+                <input type="text" th:field="*{code}" class="form-control" id="code" required>
             </div>
             <div class="col-md-6">
                 <label for="name" class="form-label">Nazwa kursu:</label>
-                <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="np. Projektowanie oprogramowania" required>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="np. Projektowanie oprogramowania" required>
             </div>
             <div class="col-md-3">
                 <label for="courseCharacter" class="form-label">Forma zajęć:</label>
-                <select id="courseCharacter" name="courseCharacter" class="form-select" th:field="*{courseCharacter}">
-                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender.name()}">
+                <select id="courseCharacter" class="form-select" th:field="*{courseCharacter}">
+                    <option th:each="character : ${courseCharacters}"
+                            th:value="${character.id}"
+                            th:text="${character.name}">
                     </option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="weeklySumOfHours" class="form-label">Tygodniowa liczba godzin:</label>
-                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" name="weeklySumOfHours" value="0" min="0">
+                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" min="0">
             </div>
             <div class="col-md-3">
                 <label for="sumOfZZUHours" class="form-label">Godziny ZZU:</label>
-                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" name="sumOfZZUHours" value="0" min="0">
+                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" min="0">
             </div>
             <div class="col-md-3">
                 <label for="sumOfCnpsHours" class="form-label">Godziny CNPS:</label>
-                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" name="sumOfCnpsHours" value="0" min="0">
+                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" min="0">
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPoints" class="form-label">Łączna liczba punktów ECTS:</label>
-                <input type="number" th:field="*{sumOfEctsPoints}" class="form-control" id="sumOfEctsPoints" name="sumOfEctsPoints" value="0" min="0">
+                <input type="number" th:field="*{sumOfEctsPoints}" class="form-control" id="sumOfEctsPoints" min="0" max="30">
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPointsFromDnClasses" class="form-label">Liczba punktów ECTS zajęć DN:</label>
-                <input type="number" th:field="*{sumOfEctsPointsFromDnClasses}" class="form-control" id="sumOfEctsPointsFromDnClasses" name="sumOfEctsPointsFromDnClasses" value="0" step="0.1" min="0">
+                <input type="number" th:field="*{sumOfEctsPointsFromDnClasses}" class="form-control" id="sumOfEctsPointsFromDnClasses" step="0.1" min="0" max="30">
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPointsFromBuClasses" class="form-label">Liczba punktów ECTS zajęć BU:</label>
-                <input type="number" th:field="*{sumOfEctsPointsFromBuClasses}" class="form-control" id="sumOfEctsPointsFromBuClasses" name="sumOfEctsPointsFromBuClasses" value="0" step="0.1" min="0">
+                <input type="number" th:field="*{sumOfEctsPointsFromBuClasses}" class="form-control" id="sumOfEctsPointsFromBuClasses" step="0.1" min="0" max="30">
             </div>
             <div class="col-md-3">
                 <label for="courseType" class="form-label">Typ kursu:</label>
-                <select id="courseType" nane="courseType" class="form-select" th:field="*{courseType}">
-                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender.name()}">
+                <select id="courseType" class="form-select" th:field="*{courseType}">
+                    <option th:each="type : ${courseTypes}"
+                            th:value="${type.id}"
+                            th:text="${type.name}">
                     </option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="courseForm" class="form-label">Forma kursu:</label>
-                <select id="courseForm" nane="courseForm" class="form-select" th:field="*{courseForm}">
-                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender.name()}">
+                <select id="courseForm" class="form-select" th:field="*{courseForm}">
+                    <option th:each="form : ${courseForms}"
+                            th:value="${form.id}"
+                            th:text="${form.name}">
                     </option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="wayOfCrediting" class="form-label">Sposób zaliczenia:</label>
-                <select id="wayOfCrediting" nane="wayOfCrediting" class="form-select" th:field="*{wayOfCrediting}">
-                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender.name()}">
+                <select id="wayOfCrediting" class="form-select" th:field="*{wayOfCrediting}">
+                    <option th:each="way : ${waysOfCrediting}"
+                            th:value="${way.id}"
+                            th:text="${way.name}">
                     </option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="courseKind" class="form-label">Rodzaj kursu:</label>
-                <select id="courseKind" nane="courseKind" class="form-select" th:field="*{courseKind}">
-                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
-                            th:value="${gender}"
-                            th:text="${gender.name()}">
+                <select id="courseKind" class="form-select" th:field="*{courseKind}">
+                    <option th:each="kind : ${courseKinds}"
+                            th:value="${kind.id}"
+                            th:text="${kind.name}">
                     </option>
                 </select>
             </div>

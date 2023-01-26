@@ -38,20 +38,20 @@ CREATE TABLE CourseTypes
 CREATE TABLE Courses
 (
     ID                           SERIAL       NOT NULL,
-    WayOfCreditingID             integer      NOT NULL,
-    CourseTypeID                 integer      NOT NULL,
-    CourseKindID                 integer      NOT NULL,
+    WayOfCreditingID             integer,
+    CourseTypeID                 integer,
+    CourseKindID                 integer,
     CourseCharacterID            integer      NOT NULL,
-    CourseFormID                 integer      NOT NULL,
+    CourseFormID                 integer,
     Code                         varchar(255),
     Name                         varchar(255),
-    WeeklySumOfHours             integer      NOT NULL,
-    SumOfZZUHours                integer      NOT NULL,
-    SumOfCNPSHours               integer      NOT NULL,
-    SumOFECTSPoints              integer      NOT NULL,
-    SumOFECTSPointsFromBUClasses float4       NOT NULL,
-    SumOFECTSPointsFromDNClasses float4       NOT NULL,
-    Discriminator                varchar(255) NOT NULL,
+    WeeklySumOfHours             integer,
+    SumOfZZUHours                integer,
+    SumOfCNPSHours               integer,
+    SumOFECTSPoints              integer,
+    SumOFECTSPointsFromBUClasses float4,
+    SumOFECTSPointsFromDNClasses float4,
+    Discriminator                varchar(255),
     PRIMARY KEY (ID)
 );
 CREATE TABLE CourseKinds
