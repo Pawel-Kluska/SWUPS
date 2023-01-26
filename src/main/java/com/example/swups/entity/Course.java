@@ -11,7 +11,9 @@ import java.util.Set;
 @Table(name = "courses")
 @Getter
 @Setter
+@Builder
 @ToString
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class Course {
     @Id
@@ -22,7 +24,7 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "wayofcreditingid", nullable = false)
     @ToString.Exclude
-    private WayOfCrediting waysOfCrediting;
+    private WayOfCrediting wayOfCrediting;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "coursetypeid", nullable = false)
@@ -54,7 +56,7 @@ public class Course {
     private Integer weeklySumOfHours;
 
     @Column(name = "sumofzzuhours", nullable = false)
-    private Integer sumOfZZHours;
+    private Integer sumOfZZUHours;
 
     @Column(name = "sumofcnpshours", nullable = false)
     private Integer sumOfCnpsHours;
@@ -73,7 +75,7 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
     @ToString.Exclude
-    Set<BlockOfCourses> blocksOfCours;
+    Set<BlockOfCourses> blocksOfCourses;
 
     @Override
     public boolean equals(Object o) {

@@ -369,6 +369,9 @@ INSERT INTO public.opinions (planofstudiesid, appuserid, ispositive, dateofopini
 VALUES (1, 1, true, '2023-01-14 19:16:34.000000', 'Swietny plan', '2023-01-14 19:18:03.000000');
 INSERT INTO public.opinions (planofstudiesid, appuserid, ispositive, dateofopinion, content, dateofmodification)
 VALUES (2, 2, false, '2023-01-02 19:18:35.000000', 'Zly plan', '2023-01-18 19:18:52.000000');
-
+INSERT INTO public.studyeffects(code, description)
+VALUES ('KINF_W14', 'Posiada szczegółową wiedzę na temat projektowania oprogramowania i projektowania baz danych');
+INSERT INTO public.studyeffects(code, description)
+VALUES ('KINF_W07', 'Posiada wiedzę na temat programowania aplikacji różnych typów, np. mobilnych, webowych, bazodanowych, rozproszonych');
 
 COMMIT;

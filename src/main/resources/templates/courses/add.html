@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org en">
+<head>
+    <meta charset="text/html; UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="/css/style.css" rel="stylesheet">
+    <title>Tworzenie kursu</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">    
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/images/logo_pwr.png" alt="Logo" class="d-inline-block align-text-top">
+                <h6 class="mt-2">System Wspomagania Układania Planów Studiów</h6>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-3">
+                        <a href="#" class="nav-link">Plany wymagające uwagi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Historia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-person-circle fa-lg"></i>
+                            <span>Krzysztof Chudzik</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">
+                            <button type="button" class="btn btn-outline-secondary" style="margin-left: .4em;">Wyloguj</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h1>Tworzenie kursu</h1>
+        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" method="post" th:object="${course}">
+            <div class="col-md-6">
+                <label for="code" class="form-label">Kod kursu:</label>
+                <input type="text" th:field="*{code}" class="form-control" id="code" name="code" required>
+            </div>
+            <div class="col-md-6">
+                <label for="name" class="form-label">Nazwa kursu:</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="np. Projektowanie oprogramowania" required>
+            </div>
+            <div class="col-md-3">
+                <label for="courseCharacter" class="form-label">Forma zajęć:</label>
+                <select id="courseCharacter" name="courseCharacter" class="form-select" th:field="*{courseCharacter}">
+                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender.name()}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="weeklySumOfHours" class="form-label">Tygodniowa liczba godzin:</label>
+                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" name="weeklySumOfHours" value="0" min="0">
+            </div>
+            <div class="col-md-3">
+                <label for="sumOfZZUHours" class="form-label">Godziny ZZU:</label>
+                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" name="sumOfZZUHours" value="0" min="0">
+            </div>
+            <div class="col-md-3">
+                <label for="sumOfCnpsHours" class="form-label">Godziny CNPS:</label>
+                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" name="sumOfCnpsHours" value="0" min="0">
+            </div>
+            <div class="col-md-4">
+                <label for="sumOfEctsPoints" class="form-label">Łączna liczba punktów ECTS:</label>
+                <input type="number" th:field="*{sumOfEctsPoints}" class="form-control" id="sumOfEctsPoints" name="sumOfEctsPoints" value="0" min="0">
+            </div>
+            <div class="col-md-4">
+                <label for="sumOfEctsPointsFromDnClasses" class="form-label">Liczba punktów ECTS zajęć DN:</label>
+                <input type="number" th:field="*{sumOfEctsPointsFromDnClasses}" class="form-control" id="sumOfEctsPointsFromDnClasses" name="sumOfEctsPointsFromDnClasses" value="0" step="0.1" min="0">
+            </div>
+            <div class="col-md-4">
+                <label for="sumOfEctsPointsFromBuClasses" class="form-label">Liczba punktów ECTS zajęć BU:</label>
+                <input type="number" th:field="*{sumOfEctsPointsFromBuClasses}" class="form-control" id="sumOfEctsPointsFromBuClasses" name="sumOfEctsPointsFromBuClasses" value="0" step="0.1" min="0">
+            </div>
+            <div class="col-md-3">
+                <label for="courseType" class="form-label">Typ kursu:</label>
+                <select id="courseType" nane="courseType" class="form-select" th:field="*{courseType}">
+                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender.name()}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="courseForm" class="form-label">Forma kursu:</label>
+                <select id="courseForm" nane="courseForm" class="form-select" th:field="*{courseForm}">
+                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender.name()}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="wayOfCrediting" class="form-label">Sposób zaliczenia:</label>
+                <select id="wayOfCrediting" nane="wayOfCrediting" class="form-select" th:field="*{wayOfCrediting}">
+                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender.name()}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="courseKind" class="form-label">Rodzaj kursu:</label>
+                <select id="courseKind" nane="courseKind" class="form-select" th:field="*{courseKind}">
+                    <option th:each="gender : ${T(pwr.studentpresencesystem.entity.Gender).values()}"
+                            th:value="${gender}"
+                            th:text="${gender.name()}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz kurs</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
