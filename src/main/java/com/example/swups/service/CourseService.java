@@ -1,8 +1,8 @@
 package com.example.swups.service;
 
 import com.example.swups.Utils;
-import com.example.swups.entity.Course;
-import com.example.swups.entity.User;
+import com.example.swups.entity.*;
+import com.example.swups.service.*;
 import com.example.swups.exceptions.EmptyCourseCodeException;
 import com.example.swups.exceptions.EmptyCourseNameException;
 import com.example.swups.repository.CourseRepository;
@@ -18,6 +18,12 @@ import java.util.Optional;
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final CourseCharacterService courseCharacterService;
+    private final CourseFormService courseFormService;
+    private final CourseKindService courseKindService;
+    private final CourseTypeService courseTypeService;
+    private final WayOfCreditingService wayOfCreditingService;
+    private final StudyEffectService studyEffectService;
 
     public List<Course> getAllCourses()
     {
@@ -55,5 +61,29 @@ public class CourseService {
             throw new EmptyCourseNameException("Course name cannot be empty!");
         }
         courseRepository.save(course);
+    }
+
+    public Course buildCourseFromCourseInfo(CourseInfo info)
+    {
+        WayOfCrediting wayOfCrediting = wayOfCreditingService.getWayOfCreditingById(Integer.parseInt(info.getWayOfCrediting()));
+        CourseCharacter courseCharacter = courseCharacterService.getCourseCharacterById(Integer.parseInt(info.getCourseCharacter()));
+        CourseType courseType = courseTypeService.getCourseTypeById(Integer.parseInt(info.getCourseType()));
+        CourseKind courseKind = courseKindService.getCourseKindById(Integer.parseInt(info.getCourseKind()));
+        CourseForm courseForm = courseFormService.getCourseFormById(Integer.parseInt(info.getCourseForm()));
+
+        return Course.builder().courseCharacter(courseCharacter)
+                .courseForm(courseForm)
+                .courseKind(courseKind)
+                .courseType(courseType)
+                .wayOfCrediting(wayOfCrediting)
+                .code(info.getCode())
+                .name(info.getName())
+                .weeklySumOfHours(info.getWeeklySumOfHours())
+                .sumOfZZUHours(info.getSumOfZZUHours())
+                .sumOfCnpsHours(info.getSumOfCnpsHours())
+                .sumOfEctsPoints(info.getSumOfEctsPoints())
+                .sumOfEctsPointsFromBuClasses(info.getSumOfEctsPointsFromBuClasses())
+                .sumOfEctsPointsFromDnClasses(info.getSumOfEctsPointsFromDnClasses())
+                .build();
     }
 }
