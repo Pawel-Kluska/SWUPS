@@ -20,5 +20,6 @@ public class CourseInfo {
     private Integer sumOfEctsPoints;
     private Float sumOfEctsPointsFromBuClasses;
     private Float sumOfEctsPointsFromDnClasses;
+    private String studyeffects;
 
 }

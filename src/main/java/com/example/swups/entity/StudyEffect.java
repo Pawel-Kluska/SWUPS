@@ -13,7 +13,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @Entity
-@Table(name = "StudyEffects")
+@Table(name = "studyeffects")
 public class StudyEffect {
 
     @Id
@@ -27,8 +27,8 @@ public class StudyEffect {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "courseid", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "courseid")
     @ToString.Exclude
     private Course courseid;
 
