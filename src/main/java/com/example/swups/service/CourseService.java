@@ -19,6 +19,11 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
 
+    public List<Course> getAllCourses()
+    {
+        return courseRepository.findAll();
+    }
+
     public Course getCourseById(Integer id)
     {
         return courseRepository.findCourseById(id);

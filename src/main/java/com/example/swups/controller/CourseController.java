@@ -42,6 +42,13 @@ public class CourseController {
         return "courses/add";
     }
 
+    @GetMapping("/courses/show")
+    public String showListOfCourses(final Model model)
+    {
+        model.addAttribute("courses", courseService.getAllCourses());
+        return "courses/show";
+    }
+
     @PostMapping("/courses/add")
     public String addCourse(@ModelAttribute CourseInfo courseInfo) throws UserPrincipalNotFoundException
     {
@@ -76,9 +83,9 @@ public class CourseController {
         }
         catch (EmptyCourseCodeException | EmptyCourseNameException e)
         {
-            return "redirect:/courses/add?error=true";
+            return "redirect:/courses/show?error=true";
         }
-        return "redirect:/courses/add";
+        return "redirect:/courses/show";
     }
 
 
