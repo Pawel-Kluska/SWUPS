@@ -45,20 +45,12 @@ public class CourseService {
         return courseRepository.findCoursesByName(name);
     }
 
-    public void saveCourse(Course course) throws EmptyCourseNameException, EmptyCourseCodeException, UserPrincipalNotFoundException {
+    public void saveCourse(Course course) throws UserPrincipalNotFoundException {
         Optional<User> currentUser = Utils.getCurrentUser();
 
         if(currentUser.isEmpty())
         {
             throw new UserPrincipalNotFoundException("User not logged in");
-        }
-        if (course.getCode().equals(""))
-        {
-            throw new EmptyCourseCodeException("Course code cannot be empty!");
-        }
-        if (course.getName().equals(""))
-        {
-            throw new EmptyCourseNameException("Course name cannot be empty!");
         }
         courseRepository.save(course);
     }

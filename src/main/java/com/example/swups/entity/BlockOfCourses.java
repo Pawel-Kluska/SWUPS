@@ -11,7 +11,9 @@ import java.util.Set;
 @Table(name = "blocksofcourses")
 @Getter
 @Setter
+@Builder
 @ToString
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class BlockOfCourses {
     @Id
@@ -37,9 +39,9 @@ public class BlockOfCourses {
 
     @ManyToMany
     @JoinTable(
-            name = "BlockOfCourses_Courses",
-            joinColumns = @JoinColumn(name = "BlockOfCoursesID"),
-            inverseJoinColumns = @JoinColumn(name = "CourseID"))
+            name = "blockofcourses_courses",
+            joinColumns = @JoinColumn(name = "blockofcoursesid"),
+            inverseJoinColumns = @JoinColumn(name = "courseid"))
     @ToString.Exclude
     Set<Course> courses;
 

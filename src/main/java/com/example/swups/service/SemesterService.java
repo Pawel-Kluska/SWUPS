@@ -17,4 +17,8 @@ public class SemesterService {
     {
         return semesterRepository.findAll();
     }
+    public Semester getSemesterByCode(String code)
+    {
+        return semesterRepository.getSemesterByCode(code);
+    }
 }

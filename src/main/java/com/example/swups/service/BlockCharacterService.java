@@ -17,4 +17,8 @@ public class BlockCharacterService {
         return blockCharacterRepository.findAll();
     }
 
+    public BlockCharacter getBlockCharacterById(Integer id)
+    {
+        return blockCharacterRepository.findBlockCharacterById(id);
+    }
 }

@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,5 +31,12 @@ public class BlockOfCoursesController {
         model.addAttribute("semesters", semesterService.getAllSemesters());
         model.addAttribute("courses", courseService.getAllCourses());
         return "blocksofcourses/add";
+    }
+
+    @PostMapping("/blocksofcourses/add")
+    public String addBlockOfCourses(@ModelAttribute BlockOfCoursesInfo blockOfCoursesInfo) throws UserPrincipalNotFoundException
+    {
+        blockOfCoursesService.saveBlockOfCourses(blockOfCoursesService.buildBlockOfCoursesFromInfo(blockOfCoursesInfo));
+        return "redirect:/blocksofcourses/add";
     }
 }

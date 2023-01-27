@@ -49,21 +49,13 @@ public class CourseController {
     @PostMapping("/courses/add")
     public String addCourse(@ModelAttribute CourseInfo courseInfo) throws UserPrincipalNotFoundException
     {
-        try
+        Course course = courseService.buildCourseFromCourseInfo(courseInfo);
+        courseService.saveCourse(course);
+        for (String studyEffect : courseInfo.getStudyeffects().split(","))
         {
-            Course course = courseService.buildCourseFromCourseInfo(courseInfo);
-            courseService.saveCourse(course);
-            for (String studyEffect : courseInfo.getStudyeffects().split(","))
-            {
-                studyEffectService.update(studyEffect, course);
-            }
-        }
-        catch (EmptyCourseCodeException | EmptyCourseNameException e)
-        {
-            return "redirect:/courses/show?error=true";
+            studyEffectService.update(studyEffect, course);
         }
         return "redirect:/courses/show";
     }
-
 
 }
