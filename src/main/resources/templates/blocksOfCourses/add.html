@@ -14,7 +14,7 @@
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
 
-    <title>Tworzenie kursu</title>
+    <title>Tworzenie bloku kursów</title>
 </head>
 <body class="bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">    
@@ -50,111 +50,133 @@
         </div>
     </nav>
     <div class="container mt-4">
-        <h1>Tworzenie kursu</h1>
-        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" action="add" method="post" th:object="${course}">
+        <h1>Tworzenie bloku kursów</h1>
+        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" action="add" method="post" th:object="${blockOfCourses}">
             <div class="col-md-6">
-                <label for="code" class="form-label">Kod kursu:</label>
+                <label for="code" class="form-label">Kod bloku:</label>
                 <input type="text" th:field="*{code}" class="form-control" id="code" required>
             </div>
             <div class="col-md-6">
-                <label for="name" class="form-label">Nazwa kursu:</label>
-                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="np. Projektowanie oprogramowania" required>
+                <label for="name" class="form-label">Nazwa bloku:</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="np. Aplikacje mobilne" required>
             </div>
-            <div class="col-md-3">
-                <label for="courseCharacter" class="form-label">Forma zajęć:</label>
-                <select id="courseCharacter" class="form-select" th:field="*{courseCharacter}">
-                    <option th:each="character : ${courseCharacters}"
-                            th:value="${character.id}"
-                            th:text="${character.name}">
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="weeklySumOfHours" class="form-label">Tygodniowa liczba godzin:</label>
-                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" min="0">
-            </div>
-            <div class="col-md-3">
-                <label for="sumOfZZUHours" class="form-label">Godziny ZZU:</label>
-                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" min="0">
-            </div>
-            <div class="col-md-3">
-                <label for="sumOfCnpsHours" class="form-label">Godziny CNPS:</label>
-                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" min="0">
-            </div>
-            <div class="col-md-4">
-                <label for="sumOfEctsPoints" class="form-label">Łączna liczba punktów ECTS:</label>
-                <input type="number" th:field="*{sumOfEctsPoints}" class="form-control" id="sumOfEctsPoints" min="0" max="30">
-            </div>
-            <div class="col-md-4">
-                <label for="sumOfEctsPointsFromDnClasses" class="form-label">Liczba punktów ECTS zajęć DN:</label>
-                <input type="number" th:field="*{sumOfEctsPointsFromDnClasses}" class="form-control" id="sumOfEctsPointsFromDnClasses" step="0.1" min="0" max="30">
-            </div>
-            <div class="col-md-4">
-                <label for="sumOfEctsPointsFromBuClasses" class="form-label">Liczba punktów ECTS zajęć BU:</label>
-                <input type="number" th:field="*{sumOfEctsPointsFromBuClasses}" class="form-control" id="sumOfEctsPointsFromBuClasses" step="0.1" min="0" max="30">
-            </div>
-            <div class="col-md-3">
-                <label for="courseType" class="form-label">Typ kursu:</label>
-                <select id="courseType" class="form-select" th:field="*{courseType}">
-                    <option th:each="type : ${courseTypes}"
-                            th:value="${type.id}"
-                            th:text="${type.name}">
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="courseForm" class="form-label">Forma kursu:</label>
-                <select id="courseForm" class="form-select" th:field="*{courseForm}">
-                    <option th:each="form : ${courseForms}"
-                            th:value="${form.id}"
-                            th:text="${form.name}">
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="wayOfCrediting" class="form-label">Sposób zaliczenia:</label>
-                <select id="wayOfCrediting" class="form-select" th:field="*{wayOfCrediting}">
-                    <option th:each="way : ${waysOfCrediting}"
-                            th:value="${way.id}"
-                            th:text="${way.name}">
-                    </option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="courseKind" class="form-label">Rodzaj kursu:</label>
-                <select id="courseKind" class="form-select" th:field="*{courseKind}">
-                    <option th:each="kind : ${courseKinds}"
-                            th:value="${kind.id}"
-                            th:text="${kind.name}">
-                    </option>
-                </select>
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <label for="blockCharacter" class="form-label">Charakter bloku:</label>
+                    <select id="blockCharacter" class="form-select" th:field="*{blockCharacter}">
+                        <option th:each="character : ${blockCharacters}"
+                                th:value="${character.id}"
+                                th:text="${character.name}">
+                        </option>
+                    </select>
+                </div>
             </div>
             <div class="col-md-12 mt-5">
-                <h5 class="mb-3">Efekty uczenia się</h5>
-                <table id="effectsTable" class="table table-hover" style="width:100%">
+                <h5 class="mb-3">Semestr</h5>
+                <table id="semestersTable" class="table table-hover" style="width:100%">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Kod</th>
-                            <th>Opis</th>
+                            <th>Numer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="effect : ${studyEffects}">
+                        <tr th:each="sem : ${semesters}">
                             <td></td>
-                            <td th:text="${effect.getCode()}"></td>
-                            <td th:text="${effect.getDescription()}"></td>
+                            <td th:text="${sem.getCode()}"></td>
+                            <td th:text="${sem.getNumber()}"></td>
                         </tr>
                     </tbody>
                 </table>
-                <input type="hidden" id="studyeffects" th:field="*{studyeffects}">
+                <input type="hidden" id="semester" th:field="*{semester}">
+            </div>
+            <div class="col-md-12 mt-5">
+                <h5 class="mb-3">Kursy</h5>
+                <table id="coursesTable" class="table table-hover" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Kod</th>
+                            <th>Nazwa</th>
+                            <th>Forma zajęć</th>
+                            <th>Typ</th>
+                            <th>Liczba godzin tyg.</th>
+                            <th>Liczba ECTS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="course : ${courses}">
+                            <td></td>
+                            <td th:text="${course.getCode()}"></td>
+                            <td th:text="${course.getName()}"></td>
+                            <td th:text="${course.getCourseCharacter().getName()}"></td>
+                            <td th:text="${course.getCourseType().getName()}"></td>
+                            <td th:text="${course.getWeeklySumOfHours()}"></td>
+                            <td th:text="${course.getSumOfEctsPoints()}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" id="courses" th:field="*{courses}">
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz kurs</button>
         </form>
     </div>
     <script>        
         $(document).ready(function () {
-            var table = $('#effectsTable').DataTable({
+            var semestersTable = $('#semestersTable').DataTable({
+                
+                columnDefs: [ {
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets:   0
+                } ],
+                select: {
+                    style:    'single',
+                    selector: 'td:first-child'
+                },              
+                language: {
+                    "decimal":        "",
+                    "emptyTable":     "Brak danych!",
+                    "info":           "Wyświetlono _END_ spośród _TOTAL_ wyników",
+                    "infoEmpty":      "Brak danych!",
+                    "infoFiltered":   "",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Wyświetl _MENU_ wyników na stronie",
+                    "loadingRecords": "Ładowanie...",
+                    "processing":     "",
+                    "search":         "Szukaj:",
+                    "zeroRecords":    "Nie znaleziono pasujących wyników!",
+                    "paginate": {
+                        "first":      "Pierwszy",
+                        "last":       "Ostatni",
+                        "next":       "Następny",
+                        "previous":   "Poprzedni"
+                    },
+                }
+                    }).on('select', function(e, dt, type, indexes) {
+                        var selectedRows = semestersTable.rows( { selected: true } );
+                        var selectedRowsData = selectedRows.data();
+                        var selectedRowsAmount = selectedRows.count();
+                        var codes = [];
+                        for (let i=0; i<selectedRowsAmount; i++ ) {
+                            codes.push(selectedRowsData[i][1]);
+                        }
+                        $('#semester').val(codes.toString());
+                    })
+                    .on('deselect', function(e, dt, type, indexes) {
+                        var selectedRows = semestersTable.rows( { selected: true } );
+                        var selectedRowsData = selectedRows.data();
+                        var selectedRowsAmount = selectedRows.count();
+                        var codes = [];
+                        for (let i=0; i<selectedRowsAmount; i++ ) {
+                            codes.push(selectedRowsData[i][1]);
+                        }
+                        $('#semester').val(codes.toString());
+                    });
+            
+            var coursesTable = $('#coursesTable').DataTable({
                 
                 columnDefs: [ {
                     orderable: false,
@@ -186,25 +208,26 @@
                     },
                 }
                     }).on('select', function(e, dt, type, indexes) {
-                        var selectedRows = table.rows( { selected: true } );
+                        var selectedRows = coursesTable.rows( { selected: true } );
                         var selectedRowsData = selectedRows.data();
                         var selectedRowsAmount = selectedRows.count();
                         var codes = [];
                         for (let i=0; i<selectedRowsAmount; i++ ) {
                             codes.push(selectedRowsData[i][1]);
                         }
-                        $('#studyeffects').val(codes.toString());
+                        $('#courses').val(codes.toString());
                     })
                     .on('deselect', function(e, dt, type, indexes) {
-                        var selectedRows = table.rows( { selected: true } );
+                        var selectedRows = coursesTable.rows( { selected: true } );
                         var selectedRowsData = selectedRows.data();
                         var selectedRowsAmount = selectedRows.count();
                         var codes = [];
                         for (let i=0; i<selectedRowsAmount; i++ ) {
                             codes.push(selectedRowsData[i][1]);
                         }
-                        $('#studyeffects').val(codes.toString());
-                    });
+                        $('#courses').val(codes.toString());
+                    });        
+                    
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
