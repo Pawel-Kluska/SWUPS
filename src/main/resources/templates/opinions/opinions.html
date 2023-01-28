@@ -75,5 +75,11 @@
 
     </div>
 </div>
+<div class="container">
+    <div th:object="${plan}" class="mt-1 me-12">
+        <a class="btn btn-primary "
+           th:href="@{/plans/{id}/details(id=${plan.getId()})}">Powrót</a>
+    </div>
+</div>
 
 </body>

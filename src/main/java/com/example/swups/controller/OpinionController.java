@@ -27,6 +27,7 @@ public class OpinionController {
         PlanOfStudies planOfStudies = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
         List<Opinion> opinions = opinionService.getOpinionsByPlanOfStudies(planOfStudies);
         model.addAttribute("opinions", opinions);
+        model.addAttribute("plan",planOfStudies);
 
         return "opinions/opinions";
     }
@@ -36,7 +37,6 @@ public class OpinionController {
         Opinion opinion = opinionService.getOpinionById(Integer.parseInt(opinionId));
         model.addAttribute("opinion", opinion);
         return "opinions/showOpinion";
-
     }
 
     @GetMapping("/add")

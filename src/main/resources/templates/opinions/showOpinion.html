@@ -44,7 +44,6 @@
     </div>
 </nav>
 <div class="container bg-light" th:Object="${opinion}">
-    <p th:text="${opinion.getId()}"></p>
     <div class="row border">
         <div class="col">
             <p>Organ opiniujacy</p>
@@ -79,9 +78,20 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <h5>Treść</h5>
+</div>
+
 <div class="container bg-light mt-2" th:Object="${opinion}">
     <div class="row border">
         <p th:text="${opinion.getContent()}"></p>
+    </div>
+</div>
+
+<div class="container">
+    <div th:object="${opinion}" class="mt-1 me-12">
+        <a class="btn btn-primary "
+           th:href="@{/plans/{id}/details/opinions(id=${opinion.getPlanOfStudies().getId()})}">Powrót</a>
     </div>
 </div>
 </body>
