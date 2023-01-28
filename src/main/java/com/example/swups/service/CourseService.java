@@ -1,10 +1,7 @@
 package com.example.swups.service;
 
 import com.example.swups.Utils;
-import com.example.swups.entity.Course;
-import com.example.swups.entity.User;
-import com.example.swups.exceptions.EmptyCourseCodeException;
-import com.example.swups.exceptions.EmptyCourseNameException;
+import com.example.swups.entity.*;
 import com.example.swups.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +15,15 @@ import java.util.Optional;
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final CourseCharacterService courseCharacterService;
+    private final CourseFormService courseFormService;
+    private final CourseKindService courseKindService;
+    private final CourseTypeService courseTypeService;
+    private final WayOfCreditingService wayOfCreditingService;
 
-    public Course getCourseById(Integer id)
+    public List<Course> getAllCourses()
     {
-        return courseRepository.findCourseById(id);
+        return courseRepository.findAll();
     }
 
     public Course getCourseByCode(String code)
@@ -29,26 +31,37 @@ public class CourseService {
         return courseRepository.findCourseByCode(code);
     }
 
-    public List<Course> getCoursesByName(String name)
-    {
-        return courseRepository.findCoursesByName(name);
-    }
-
-    public void saveCourse(Course course) throws EmptyCourseNameException, EmptyCourseCodeException, UserPrincipalNotFoundException {
+    public void saveCourse(Course course) throws UserPrincipalNotFoundException {
         Optional<User> currentUser = Utils.getCurrentUser();
 
         if(currentUser.isEmpty())
         {
             throw new UserPrincipalNotFoundException("User not logged in");
         }
-        if (course.getCode().equals(""))
-        {
-            throw new EmptyCourseCodeException("Course code cannot be empty!");
-        }
-        if (course.getName().equals(""))
-        {
-            throw new EmptyCourseNameException("Course name cannot be empty!");
-        }
         courseRepository.save(course);
+    }
+
+    public Course buildCourseFromCourseInfo(CourseInfo info)
+    {
+        WayOfCrediting wayOfCrediting = wayOfCreditingService.getWayOfCreditingById(Integer.parseInt(info.getWayOfCrediting()));
+        CourseCharacter courseCharacter = courseCharacterService.getCourseCharacterById(Integer.parseInt(info.getCourseCharacter()));
+        CourseType courseType = courseTypeService.getCourseTypeById(Integer.parseInt(info.getCourseType()));
+        CourseKind courseKind = courseKindService.getCourseKindById(Integer.parseInt(info.getCourseKind()));
+        CourseForm courseForm = courseFormService.getCourseFormById(Integer.parseInt(info.getCourseForm()));
+
+        return Course.builder().courseCharacter(courseCharacter)
+                .courseForm(courseForm)
+                .courseKind(courseKind)
+                .courseType(courseType)
+                .wayOfCrediting(wayOfCrediting)
+                .code(info.getCode())
+                .name(info.getName())
+                .weeklySumOfHours(info.getWeeklySumOfHours())
+                .sumOfZZUHours(info.getSumOfZZUHours())
+                .sumOfCnpsHours(info.getSumOfCnpsHours())
+                .sumOfEctsPoints(info.getSumOfEctsPoints())
+                .sumOfEctsPointsFromBuClasses(info.getSumOfEctsPointsFromBuClasses())
+                .sumOfEctsPointsFromDnClasses(info.getSumOfEctsPointsFromDnClasses())
+                .build();
     }
 }
