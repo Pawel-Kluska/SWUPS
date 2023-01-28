@@ -154,7 +154,7 @@
     </div>
     <script>        
         $(document).ready(function () {
-            var table = $('#effectsTable').DataTable({
+            let table = $('#effectsTable').DataTable({
                 
                 columnDefs: [ {
                     orderable: false,
@@ -186,20 +186,20 @@
                     },
                 }
                     }).on('select', function(e, dt, type, indexes) {
-                        var selectedRows = table.rows( { selected: true } );
-                        var selectedRowsData = selectedRows.data();
-                        var selectedRowsAmount = selectedRows.count();
-                        var codes = [];
+                        let selectedRows = table.rows( { selected: true } );
+                        let selectedRowsData = selectedRows.data();
+                        let selectedRowsAmount = selectedRows.count();
+                        let codes = [];
                         for (let i=0; i<selectedRowsAmount; i++ ) {
                             codes.push(selectedRowsData[i][1]);
                         }
                         $('#studyeffects').val(codes.toString());
                     })
                     .on('deselect', function(e, dt, type, indexes) {
-                        var selectedRows = table.rows( { selected: true } );
-                        var selectedRowsData = selectedRows.data();
-                        var selectedRowsAmount = selectedRows.count();
-                        var codes = [];
+                        let selectedRows = table.rows( { selected: true } );
+                        let selectedRowsData = selectedRows.data();
+                        let selectedRowsAmount = selectedRows.count();
+                        let codes = [];
                         for (let i=0; i<selectedRowsAmount; i++ ) {
                             codes.push(selectedRowsData[i][1]);
                         }

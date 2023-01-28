@@ -1,8 +1,6 @@
 package com.example.swups.controller;
 
 import com.example.swups.entity.*;
-import com.example.swups.exceptions.EmptyCourseCodeException;
-import com.example.swups.exceptions.EmptyCourseNameException;
 import com.example.swups.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

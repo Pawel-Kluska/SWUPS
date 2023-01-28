@@ -2,9 +2,6 @@ package com.example.swups.service;
 
 import com.example.swups.Utils;
 import com.example.swups.entity.*;
-import com.example.swups.service.*;
-import com.example.swups.exceptions.EmptyCourseCodeException;
-import com.example.swups.exceptions.EmptyCourseNameException;
 import com.example.swups.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,26 +20,15 @@ public class CourseService {
     private final CourseKindService courseKindService;
     private final CourseTypeService courseTypeService;
     private final WayOfCreditingService wayOfCreditingService;
-    private final StudyEffectService studyEffectService;
 
     public List<Course> getAllCourses()
     {
         return courseRepository.findAll();
     }
 
-    public Course getCourseById(Integer id)
-    {
-        return courseRepository.findCourseById(id);
-    }
-
     public Course getCourseByCode(String code)
     {
         return courseRepository.findCourseByCode(code);
-    }
-
-    public List<Course> getCoursesByName(String name)
-    {
-        return courseRepository.findCoursesByName(name);
     }
 
     public void saveCourse(Course course) throws UserPrincipalNotFoundException {

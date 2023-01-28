@@ -23,20 +23,20 @@ public class BlockOfCoursesController {
     private final SemesterService semesterService;
     private final CourseService courseService;
 
-    @GetMapping("/blocksofcourses/add")
+    @GetMapping("/blocksOfCourses/add")
     public String showBlockOfCoursesForm(final Model model)
     {
         model.addAttribute("blockOfCourses", new BlockOfCoursesInfo());
         model.addAttribute("blockCharacters", blockCharacterService.getAllBlockCharacters());
         model.addAttribute("semesters", semesterService.getAllSemesters());
         model.addAttribute("courses", courseService.getAllCourses());
-        return "blocksofcourses/add";
+        return "blocksOfCourses/add";
     }
 
-    @PostMapping("/blocksofcourses/add")
+    @PostMapping("/blocksOfCourses/add")
     public String addBlockOfCourses(@ModelAttribute BlockOfCoursesInfo blockOfCoursesInfo) throws UserPrincipalNotFoundException
     {
         blockOfCoursesService.saveBlockOfCourses(blockOfCoursesService.buildBlockOfCoursesFromInfo(blockOfCoursesInfo));
-        return "redirect:/blocksofcourses/add";
+        return "redirect:/blocksOfCourses/add";
     }
 }
