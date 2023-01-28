@@ -32,6 +32,7 @@ public class PlanOfStudiesControllerTest {
     @WithMockUser(username = "USER", authorities = {"SENAT"})
     void getPlanDetailsTest() throws Exception {
         //given
+        TestUtils.logInUser("SENAT");
         String url = "/plans/1/details";
         PlanOfStudies planOfStudies = TestUtils.getPlanOfStudies();
 
