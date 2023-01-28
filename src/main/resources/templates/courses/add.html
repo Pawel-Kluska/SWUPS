@@ -17,7 +17,7 @@
     <title>Tworzenie kursu</title>
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">    
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="/images/logo_pwr.png" alt="Logo" class="d-inline-block align-text-top">
@@ -177,7 +177,10 @@
                     Proszę wybrać przynajmniej 1 efekt uczenia się!
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#confirmModal" style="width: 150px;">Utwórz kurs</button>
+            <div class="col-md-12 mb-5" style="text-align: center;">
+                <button type="reset" class="btn btn-secondary btn-lg btn-block" style="width: 150px;">Wyczyść</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#confirmModal" style="width: 150px;">Utwórz kurs</button>
+            </div>            
             
             <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
