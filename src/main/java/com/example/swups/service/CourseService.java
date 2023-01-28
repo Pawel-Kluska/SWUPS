@@ -2,6 +2,7 @@ package com.example.swups.service;
 
 import com.example.swups.Utils;
 import com.example.swups.entity.*;
+import com.example.swups.exceptions.NoUniqueCourseCodeException;
 import com.example.swups.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,12 +32,17 @@ public class CourseService {
         return courseRepository.findCourseByCode(code);
     }
 
-    public void saveCourse(Course course) throws UserPrincipalNotFoundException {
+    public void saveCourse(Course course) throws UserPrincipalNotFoundException, NoUniqueCourseCodeException {
         Optional<User> currentUser = Utils.getCurrentUser();
 
         if(currentUser.isEmpty())
         {
             throw new UserPrincipalNotFoundException("User not logged in");
+        }
+
+        if (courseRepository.findCourseByCode(course.getCode()) != null)
+        {
+            throw new NoUniqueCourseCodeException("Course code must be unique!");
         }
         courseRepository.save(course);
     }

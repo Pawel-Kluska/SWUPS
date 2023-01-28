@@ -50,6 +50,10 @@
         </div>
     </nav>
     <div class="container mt-4">
+        <div class="valid-feedback d-block" th:text="${success} ? 'Kurs utworzony pomyślnie!' : '' ">
+            <p class="display-6" th:text="${success} ? 'Kurs utworzony pomyślnie!' : '' ">
+            </p>
+        </div>
         <h1 class="mb-5">Lista kursów</h1>
         <table id="coursesTable" class="table table-hover" style="width:100%">
             <thead>
