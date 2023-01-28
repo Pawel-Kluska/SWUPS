@@ -51,7 +51,7 @@
     </nav>
     <div class="container mt-4">
         <h1>Tworzenie kursu</h1>
-        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3 needs-validation" action="add" method="post" th:object="${course}" novalidate>
+        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3 needs-validation" id="form" action="add" method="post" th:object="${course}" novalidate>
             <div class="col-md-6">
                 <label for="code" class="form-label">Kod kursu:</label>
                 <input type="text" th:field="*{code}" class="form-control" id="code" placeholder="np. INZ004373W" minlength="4" required>
@@ -177,7 +177,27 @@
                     Proszę wybrać przynajmniej 1 efekt uczenia się!
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz kurs</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#confirmModal" style="width: 150px;">Utwórz kurs</button>
+            
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Potwierdzenie</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Czy na pewno chcesz utworzyć kurs?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Nie</button>
+                        <button type="submit" class="btn btn-primary" onclick="hide_modal()">Tak</button>
+                    </div>
+                </div>
+                </div>
+            </div>
         </form>
     </div>
     <script>        
@@ -253,6 +273,11 @@
             }, false)
             })
         })()
+    </script>
+    <script>
+        function hide_modal() {
+            $('#confirmModal').modal('toggle');
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

@@ -58,6 +58,7 @@
                 <div class="invalid-feedback">
                     Kod bloku nie może być pusty!
                 </div>
+                <div class="invalid-feedback d-block" th:text="${error} ? 'W bazie znajduje się blok o podanym kodzie!' : '' "></div>
             </div>
             <div class="col-md-6">
                 <label for="name" class="form-label">Nazwa bloku:</label>
@@ -131,7 +132,7 @@
                     Proszę wybrać przynajmniej 1 kurs!
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz kurs</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz blok</button>
         </form>
     </div>
     <script>        
