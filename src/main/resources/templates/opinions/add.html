@@ -43,18 +43,18 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container mt-5">
     <form id="form" class="form form-horizontal" role="form" th:object="${opinion}" th:action="${url}"
           method="post">
         <h1>Dodaj opinię</h1>
         <div class="form-group">
-            <textarea type="text" th:field="*{content}" class="form-control" id="Content"></textarea>
+            <textarea type="text" rows="10" cols="40" th:field="*{content}" class="form-control" id="Content"></textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group mt-4">
             <input type="radio" th:field="*{isPositive}" th:value="${true}" id="positive" name="opinionStatus"
                    value="Opinia pozytywna">
             <label for="positive">Opinia pozytywna</label>
-            <input type="radio" th:field="*{isPositive}" th:value="${false}" id="negative" name="opinionStatus"
+            <input class="ms-3" type="radio" th:field="*{isPositive}" th:value="${false}" id="negative" name="opinionStatus"
                    value="Opinia negatywna">
             <label for="negative">Opinia negatywna</label>
         </div>
@@ -88,9 +88,12 @@
                     </form>
                 </div>
                 <script>
+                    document.getElementById("positive").setAttribute("checked", "checked")
+
                     function form_submit() {
                         document.getElementById("form").submit();
                     }
+
                 </script>
 
 

@@ -335,9 +335,9 @@ VALUES (1, 1, 'OB_IST_3', 'Paradygmaty Programowania');
 INSERT INTO public.blocksofcourses (blockcharacterid, semesterid, code, name)
 VALUES (2, 2, 'WYB_ARCH_1', 'Belki');
 INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
-VALUES (1, 2, 1, 'Rada informatyki', 'IST1');
+VALUES (1, 2, 1, 'RADA_KONSULTACYJNA', 'IST1');
 INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
-VALUES (2, 1, 2, 'Rada Architektury', 'ARCH1');
+VALUES (2, 1, 2, 'RADA_DYSCYPLINY', 'ARCH1');
 INSERT INTO public.authorities (disciplineid, facultyid, fieldofstudyid, name, code)
 VALUES (2, 1, 2, 'SENAT', 'SEN1');
 INSERT INTO public.appusers (authorityid, login, password, name, surname)

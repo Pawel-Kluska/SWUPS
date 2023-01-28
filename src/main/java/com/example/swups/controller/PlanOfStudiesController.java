@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
+
 @Controller
 @RequestMapping("/plans")
 @RequiredArgsConstructor
@@ -41,7 +43,11 @@ public class PlanOfStudiesController {
         plan = planOfStudiesService.getPlanOfStudiesById(plan.getId());
         PlanStatus planStatus = planstatusService.getPlanStatusByName("Zatwierdzony");
         plan.setPlanStatus(planStatus);
-        planOfStudiesService.savePlan(plan);
+        try {
+            planOfStudiesService.savePlan(plan);
+        } catch (UserPrincipalNotFoundException e) {
+            return "redirect:/plans/" + plan.getId() + "/details";
+        }
         return "redirect:/plans/" + plan.getId() + "/details";
     }
 }

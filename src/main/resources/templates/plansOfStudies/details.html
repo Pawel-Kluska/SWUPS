@@ -56,80 +56,70 @@
 </nav>
 <div class="container mx-auto mt-5" style="width: 1500px;">
     <div class="content">
-        <div th:object="${plan}">
-            <div class="row border">
-                <div class="col-4">
-                    <p>Nazwa planu</p>
-                </div>
-                <div class="col-8">
-                    <p th:text="${plan.getIdentifier()}"></p>
-                </div>
-
-            </div>
-            <div class="row border">
-                <div class="col-4">
-                    <p>Wydział</p>
-                </div>
-                <div class="col-8">
-                    <p th:text="${plan.getFieldOfStudy().getFaculty().getName()}"></p>
-                </div>
-
-            </div>
-            <div class="row border">
-                <div class="col-4">
-                    <p>Studia</p>
-                </div>
-                <div class="col-8">
+        <table class="table table-striped" th:object="${plan}">
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Nazwa planu</td>
+                <td th:text="${plan.getIdentifier()}"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Wydział</td>
+                <td th:text="${plan.getFieldOfStudy().getFaculty().getName()}"></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Studia</td>
+                <td>
                     <p th:text="${plan.getFormOfStudy().getName()}"></p>
                     <p th:text="${plan.getEducationLevel().getName()}"></p>
                     <p th:text="${plan.getDegree().getName()}"></p>
-                </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Kierunek</td>
+                <td th:text="${plan.getFieldOfStudy().getName()}"></td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Specjalność</td>
+                <td th:text="${plan.getSpecialization()}"></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>Status</td>
+                <td th:text="${plan.getPlanStatus().getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
 
+        <div class="row mt-5 mx-auto">
+            <div class="col-3">
+                <a class="btn btn-primary"
+                   th:href="@{/plans}">Powrót</a>
             </div>
-            <div class="row border">
-                <div class="col-4">
-                    <p>Kierunek</p>
-                </div>
-                <div class="col-8">
-                    <p th:text="${plan.getFieldOfStudy().getName()}"></p>
-                </div>
+            <div class="col-3">
+                <a class="btn btn-primary disabled"
+                >Wyświetl plan</a>
+            </div>
+            <div class="col-3">
 
+                <button th:if="${isSenat}" type="button" class="btn btn-success" data-toggle="modal"
+                        data-target="#myModal">Zatwierdź plan
+                </button>
+                <a th:unless="${isSenat}" class="btn btn-primary"   th:href="${addOpinionUrl}">Zaopiniuj plan</a>
             </div>
-            <div class="row border">
-                <div class="col-4">
-                    <p>Specjalność</p>
-                </div>
-                <div class="col-8">
-                    <p th:text="${plan.getSpecialization()}"></p>
-                </div>
-
+            <div class="col-3">
+                <a class="btn btn-primary"
+                   th:href="${addOpinionsUrl}">Wyświetl opinie</a>
             </div>
-            <p th:text="${plan.getPlanStatus().getName()}"></p>
-            <div class="row mt-5">
-                <div class="col-3">
-                    <a class="btn btn-primary"
-                       th:href="@{/plans}">Powrót</a>
-                </div>
-                <div class="col-3">
-                    <a class="btn btn-primary disabled"
-                    >Wyświetl plan</a>
-                </div>
-                <div class="col-3">
-                    <a class="btn btn-primary"
-                       th:href="${addOpinionUrl}">Zaopiniuj plan</a>
-                </div>
-                <div class="col-3">
-                    <a class="btn btn-primary"
-                       th:href="${addOpinionsUrl}">Wyświetl opinie</a>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
-<button th:if="${isSenat}" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Zatwierdź
-    plan
-</button>
+</div>
+
 
 <!--<form th:object="${plan}" th:action="${url}" method="post">-->
 <!--    <p th:text="${plan.getPlanstatusid().getName()}"></p>-->
@@ -150,9 +140,12 @@
             <div class="modal-footer">
                 <form th:object="${plan}" th:action="${url}" method="post" id="form">
                     <p th:text="'Obecny status to: '+${plan.getPlanStatus().getName()}"></p>
-                    <input type="submit" onclick="form_submit()" class="btn btn-success" data-dismiss="modal" id="okBtn"
-                           value="Tak">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Nie</button>
+                    <p th:if="${plan.getPlanStatus().getName()} == 'Zatwierdzony'">Nie możesz zatwierdzić planu</p>
+                    <div th:unless="${plan.getPlanStatus().getName()} == 'Zatwierdzony'">
+                        <input type="submit" onclick="form_submit()" class="btn btn-success" data-dismiss="modal" id="okBtn"
+                               value="Tak">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Nie</button>
+                    </div>
                 </form>
             </div>
             <script>

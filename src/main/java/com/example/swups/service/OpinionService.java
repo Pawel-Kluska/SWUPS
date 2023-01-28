@@ -32,8 +32,8 @@ public class OpinionService {
     public void saveOpinion(Opinion opinion, String planId) throws EmptyOpinionContentException, UserPrincipalNotFoundException {
         Optional<User> currentUser = Utils.getCurrentUser();
 
-        if(currentUser.isEmpty()) {
-            throw new UserPrincipalNotFoundException("User not logged in");
+        if(currentUser.isEmpty() || currentUser.get().getAuthority().getName().equals("SENAT")) {
+            throw new UserPrincipalNotFoundException("Wrong user");
         }
 
         PlanOfStudies planOfStudiesById = planOfStudiesService.getPlanOfStudiesById(Integer.parseInt(planId));
