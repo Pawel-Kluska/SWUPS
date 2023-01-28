@@ -17,7 +17,7 @@
     <title>Tworzenie kursu</title>
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">    
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">    
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="/images/logo_pwr.png" alt="Logo" class="d-inline-block align-text-top">
@@ -51,14 +51,21 @@
     </nav>
     <div class="container mt-4">
         <h1>Tworzenie kursu</h1>
-        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3" action="add" method="post" th:object="${course}">
+        <form class="row g-3 justify-content-center mx-lg-5 mx-md-0 mt-3 needs-validation" id="form" action="add" method="post" th:object="${course}" novalidate>
             <div class="col-md-6">
                 <label for="code" class="form-label">Kod kursu:</label>
-                <input type="text" th:field="*{code}" class="form-control" id="code" required>
+                <input type="text" th:field="*{code}" class="form-control" id="code" placeholder="np. INZ004373W" minlength="4" required>
+                <div class="invalid-feedback">
+                    Kod kursu musi składać się z minimum 4 znaków!
+                </div>
+                <div class="invalid-feedback d-block" th:text="${error} ? 'W bazie znajduje się kurs o podanym kodzie!' : '' "></div>
             </div>
             <div class="col-md-6">
                 <label for="name" class="form-label">Nazwa kursu:</label>
                 <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="np. Projektowanie oprogramowania" required>
+                <div class="invalid-feedback">
+                    Nazwa kursu nie może być pusta!
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="courseCharacter" class="form-label">Forma zajęć:</label>
@@ -71,27 +78,45 @@
             </div>
             <div class="col-md-3">
                 <label for="weeklySumOfHours" class="form-label">Tygodniowa liczba godzin:</label>
-                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" min="0">
+                <input type="number" th:field="*{weeklySumOfHours}" class="form-control" id="weeklySumOfHours" min="0" max="900">
+                <div class="invalid-feedback">
+                    Tygodniowa liczba godzin musi wynosić pomiędzy 0 a 900!
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="sumOfZZUHours" class="form-label">Godziny ZZU:</label>
-                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" min="0">
+                <input type="number" th:field="*{sumOfZZUHours}" class="form-control" id="sumOfZZUHours" min="0" max="900">
+                <div class="invalid-feedback">
+                    Liczba godzin ZZU musi wynosić pomiędzy 0 a 900!
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="sumOfCnpsHours" class="form-label">Godziny CNPS:</label>
-                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" min="0">
+                <input type="number" th:field="*{sumOfCnpsHours}" class="form-control" id="sumOfCnpsHours" min="0" max="900">
+                <div class="invalid-feedback">
+                    Liczba godzin CNPS musi wynosić pomiędzy 0 a 900!
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPoints" class="form-label">Łączna liczba punktów ECTS:</label>
                 <input type="number" th:field="*{sumOfEctsPoints}" class="form-control" id="sumOfEctsPoints" min="0" max="30">
+                <div class="invalid-feedback">
+                    Liczba godzin ECTS musi wynosić pomiędzy 0 a 30!
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPointsFromDnClasses" class="form-label">Liczba punktów ECTS zajęć DN:</label>
                 <input type="number" th:field="*{sumOfEctsPointsFromDnClasses}" class="form-control" id="sumOfEctsPointsFromDnClasses" step="0.1" min="0" max="30">
+                <div class="invalid-feedback">
+                    Liczba godzin ECTS zajęć DN musi wynosić pomiędzy 0 a 30!
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="sumOfEctsPointsFromBuClasses" class="form-label">Liczba punktów ECTS zajęć BU:</label>
                 <input type="number" th:field="*{sumOfEctsPointsFromBuClasses}" class="form-control" id="sumOfEctsPointsFromBuClasses" step="0.1" min="0" max="30">
+                <div class="invalid-feedback">
+                    Liczba godzin ECTS zajęć BU musi wynosić pomiędzy 0 a 30!
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="courseType" class="form-label">Typ kursu:</label>
@@ -147,9 +172,35 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="hidden" id="studyeffects" th:field="*{studyeffects}">
+                <input type="text" class="d-none" id="studyeffects" th:field="*{studyeffects}" required>
+                <div class="invalid-feedback">
+                    Proszę wybrać przynajmniej 1 efekt uczenia się!
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 150px;">Utwórz kurs</button>
+            <div class="col-md-12 mb-5" style="text-align: center;">
+                <button type="reset" class="btn btn-secondary btn-lg btn-block" style="width: 150px;">Wyczyść</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#confirmModal" style="width: 150px;">Utwórz kurs</button>
+            </div>            
+            
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Potwierdzenie</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Czy na pewno chcesz utworzyć kurs?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Nie</button>
+                        <button type="submit" class="btn btn-primary" onclick="hide_modal()">Tak</button>
+                    </div>
+                </div>
+                </div>
+            </div>
         </form>
     </div>
     <script>        
@@ -206,6 +257,30 @@
                         $('#studyeffects').val(codes.toString());
                     });
         });
+    </script>
+    <script>
+        (function () {
+        'use strict'
+
+        let forms = document.querySelectorAll('.needs-validation');
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+    </script>
+    <script>
+        function hide_modal() {
+            $('#confirmModal').modal('toggle');
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

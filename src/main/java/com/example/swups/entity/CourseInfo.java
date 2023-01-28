@@ -10,6 +10,7 @@ public class CourseInfo {
     private String wayOfCrediting;
     private String courseType;
     private String courseKind;
+
     private String courseCharacter;
     private String courseForm;
     private String code;

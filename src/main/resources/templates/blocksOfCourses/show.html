@@ -14,7 +14,7 @@
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
 
-    <title>Lista kursów</title>
+    <title>Lista bloków kursów</title>
 </head>
 <body class="bg-light">
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">    
@@ -50,37 +50,29 @@
         </div>
     </nav>
     <div class="container mt-4">
-        <div class="valid-feedback d-block" th:text="${success} ? 'Kurs utworzony pomyślnie!' : '' ">
-            <p class="display-6" th:text="${success} ? 'Kurs utworzony pomyślnie!' : '' ">
-            </p>
+        <div class="valid-feedback d-block" th:text="${success} ? 'Blok kursów utworzony pomyślnie!' : '' ">
         </div>
-        <h1 class="mb-5">Lista kursów</h1>
+        <h1 class="mb-5">Lista bloków kursów</h1>
         <table id="coursesTable" class="table table-hover" style="width:100%">
             <thead>
                 <tr>
                     <th>Kod</th>
                     <th>Nazwa</th>
-                    <th>Forma zajęć</th>
-                    <th>Typ</th>
-                    <th>Liczba godzin tyg.</th>
-                    <th>Liczba ECTS</th>
+                    <th>Charakter</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="course : ${courses}">
-                    <td th:text="${course.getCode()}"></td>
-                    <td th:text="${course.getName()}"></td>
-                    <td th:text="${course.getCourseCharacter().getName()}"></td>
-                    <td th:text="${course.getCourseType().getName()}"></td>
-                    <td th:text="${course.getWeeklySumOfHours()}"></td>
-                    <td th:text="${course.getSumOfEctsPoints()}"></td>
+                <tr th:each="block : ${blocksOfCourses}">
+                    <td th:text="${block.getCode()}"></td>
+                    <td th:text="${block.getName()}"></td>
+                    <td th:text="${block.getBlockCharacter().getName()}"></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <script>        
         $(document).ready(function () {
-            let table = $('#coursesTable').DataTable({        
+            let table = $('#blocksTable').DataTable({        
                 language: {
                     "decimal":        "",
                     "emptyTable":     "Brak danych!",
