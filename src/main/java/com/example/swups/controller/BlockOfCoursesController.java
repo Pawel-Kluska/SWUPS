@@ -46,7 +46,7 @@ public class BlockOfCoursesController {
         {
             return "redirect:/blocksOfCourses/add?error=true";
         }
-        return "redirect:/blocksOfCourses/add";
+        return "redirect:/blocksOfCourses/show?success=true";
     }
 
     @GetMapping("/blocksOfCourses/show")

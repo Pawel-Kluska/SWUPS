@@ -101,7 +101,7 @@
                 </tr>
                 </tbody>
             </table>
-            <input type="text" id="semester" class="d-none" th:field="*{semester}">
+            <input type="text" id="semester" class="d-none" th:field="*{semester}" required>
             <div class="invalid-feedback">
                 Proszę wybrać semestr!
             </div>
@@ -132,7 +132,7 @@
                 </tr>
                 </tbody>
             </table>
-            <input type="text" id="courses" class="d-none" th:field="*{courses}">
+            <input type="text" id="courses" class="d-none" th:field="*{courses}" required>
             <div class="invalid-feedback">
                 Proszę wybrać przynajmniej 1 kurs!
             </div>
@@ -140,7 +140,7 @@
         <div class="col-md-12 mb-5" style="text-align: center;">
             <button type="reset" class="btn btn-secondary btn-lg btn-block" style="width: 150px;">Wyczyść</button>
             <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
-                    data-bs-target="#confirmModal" style="width: 150px;">Utwórz kurs
+                    data-bs-target="#confirmModal" style="width: 150px;">Utwórz blok
             </button>
         </div>
 

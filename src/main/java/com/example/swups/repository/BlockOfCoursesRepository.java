@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BlockOfCoursesRepository extends JpaRepository<BlockOfCourses, Integer> {
 
-    public List<BlockOfCourses> findBlockOfCoursesByCode(String code);
+    public BlockOfCourses findBlockOfCoursesByCode(String code);
 }
