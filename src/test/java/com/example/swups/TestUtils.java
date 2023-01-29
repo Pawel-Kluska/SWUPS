@@ -23,7 +23,7 @@ public class TestUtils {
         User user = User.builder()
                 .name(name)
                 .surname("surname")
-                .login("login")
+                .login(name)
                 .password("password")
                 .authority(authority)
                 .build();
@@ -38,7 +38,9 @@ public class TestUtils {
                 .build();
 
         UserDetails user = User.builder()
-                .login("login")
+                .login(role)
+                .name("name")
+                .surname("surname")
                 .password("password")
                 .authority(authority)
                 .build();
