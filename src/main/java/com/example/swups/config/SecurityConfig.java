@@ -18,12 +18,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/plans/*/details/opinions/add").hasAnyAuthority(
-                        "KOMISJA_PROGRAMOWA_KIERUNKU",
-                        "RADA_KONSULTACYJNA",
-                        "RADA_DYSCYPLINY",
-                        "RADA_JAKOSCI_KSZTALCENIA",
-                        "KOMISJA_SENACKA_DS_KSZTALCENIA")
+//                .requestMatchers("/plans/*/details/opinions/add").hasAnyAuthority(
+//                        "KOMISJA_PROGRAMOWA_KIERUNKU",
+//                        "RADA_KONSULTACYJNA",
+//                        "RADA_DYSCYPLINY",
+//                        "RADA_JAKOSCI_KSZTALCENIA",
+//                        "KOMISJA_SENACKA_DS_KSZTALCENIA")
                 .requestMatchers("/images/**", "/css/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
